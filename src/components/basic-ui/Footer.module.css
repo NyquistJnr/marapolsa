@@ -34,6 +34,7 @@
   background-color: #fff;
   color: #e86c44;
   border: 1px solid #fff;
+  padding: 2% 8%;
 }
 
 .subscribeBtn:hover,
@@ -41,6 +42,7 @@
   background-color: #ccc !important;
   color: #e86c44 !important;
   border: 1px solid #ccc !important;
+  padding: 2% 8%;
 }
 
 @media (max-width: 767px) {

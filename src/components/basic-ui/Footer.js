@@ -50,8 +50,7 @@ const Footer = () => {
 
   return (
     <footer
-      style={{ backgroundColor: "#E86C44", padding: "60px 0", color: "#fff" }}
-    >
+      style={{ backgroundColor: "#E86C44", padding: "60px 0", color: "#fff" }}>
       <Container>
         <div className="row">
           <div className="col-12 col-sm-12 col-md-6 col-lg-6">
@@ -119,58 +118,77 @@ const Footer = () => {
             style={{
               display: "flex",
               flexDirection: "column",
-              alignItems: "end",
-            }}
-          >
-            <Image
-              src={whiteLogo}
-              alt="Marapolsa White Logo"
-              width={180}
-              height="auto"
-              priority
-            />
-            <p style={{ marginTop: 20 }}>
-              Copyright &#169;{" "}
-              {year ? <span>{year}</span> : <span>Loading...</span>}. All rights
-              reserved.
-            </p>
+              justifyContent: "space-between",
+            }}>
             <div
               style={{
                 display: "flex",
+                flexDirection: "column",
+                alignItems: "end",
+                justifyContent: "space-between",
+              }}>
+              <Image
+                src={whiteLogo}
+                alt="Marapolsa White Logo"
+                width={180}
+                height="auto"
+                priority
+              />
+              <p style={{ marginTop: 20 }}>
+                Copyright &#169;{" "}
+                {year ? <span>{year}</span> : <span>Loading...</span>}. All
+                rights reserved.
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-evenly",
+                }}
+                className={classes.iconWidth}>
+                <Image
+                  src={icon1}
+                  priority
+                  style={{ width: 26, height: "auto" }}
+                  alt="X"
+                />
+                <Image
+                  src={icon2}
+                  priority
+                  style={{ width: 30, height: "auto" }}
+                  alt="Instagram"
+                />
+                <Image
+                  src={icon3}
+                  priority
+                  style={{ width: 30, height: "auto" }}
+                  alt="Tiktok"
+                />
+                <Image
+                  src={icon4}
+                  priority
+                  style={{ width: 33, height: "auto" }}
+                  alt="Youtube"
+                />
+                <Image
+                  src={icon5}
+                  priority
+                  style={{ width: 33, height: "auto" }}
+                  alt="Facebook"
+                />
+              </div>
+            </div>
+            <div
+              style={{
+                fontSize: 14,
+                display: "flex",
                 justifyContent: "space-evenly",
-              }}
-              className={classes.iconWidth}
-            >
-              <Image
-                src={icon1}
-                priority
-                style={{ width: 26, height: "auto" }}
-                alt="X"
-              />
-              <Image
-                src={icon2}
-                priority
-                style={{ width: 30, height: "auto" }}
-                alt="Instagram"
-              />
-              <Image
-                src={icon3}
-                priority
-                style={{ width: 30, height: "auto" }}
-                alt="Tiktok"
-              />
-              <Image
-                src={icon4}
-                priority
-                style={{ width: 33, height: "auto" }}
-                alt="Youtube"
-              />
-              <Image
-                src={icon5}
-                priority
-                style={{ width: 33, height: "auto" }}
-                alt="Facebook"
-              />
+                width: "100%",
+                marginTop: 30,
+              }}>
+              <p style={{ textAlign: "center" }}>Contact Us</p>
+              <p style={{ textAlign: "center" }}>Advertise with us</p>
+              <p style={{ textAlign: "center" }}>Privacy Policy</p>
+              <p style={{ textAlign: "center" }}>Terms & Conditions</p>
             </div>
           </div>
         </div>

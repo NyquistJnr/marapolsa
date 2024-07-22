@@ -169,29 +169,32 @@ const data4 = [
 
 export default function Home() {
   return (
-    <Container>
-      <h1 style={{ fontWeight: "bold", marginTop: 20 }}>Trending Reviews</h1>
-      <hr style={{ border: "1px solid #000", marginBottom: 20 }} />
-      <HorizontalScroll />
-      <div style={{ marginTop: 50 }}>
-        <div className="row">
-          <div className="col-12 col-sm-12 col-md-7 col-lg-8 py-3">
-            <LastestList data={data1} name="Lastest" />
-          </div>
-          <div className="col-12 col-sm-12 col-md-5 col-lg-4 py-3">
-            <PopularList data={data2} name="Most Popular" />
+    <>
+      <Container>
+        <h1 style={{ fontWeight: "bold", marginTop: 20 }}>Trending Reviews</h1>
+        <hr style={{ border: "1px solid #000", marginBottom: 20 }} />
+        <HorizontalScroll />
+        <div style={{ marginTop: 50 }}>
+          <div className="row">
+            <div className="col-12 col-sm-12 col-md-7 col-lg-8 py-3">
+              <LastestList data={data1} name="Lastest" />
+            </div>
+            <div className="col-12 col-sm-12 col-md-5 col-lg-4 py-3">
+              <PopularList data={data2} name="Most Popular" />
+            </div>
           </div>
         </div>
-      </div>
-      {/* Start of New Section */}
-      <NewsList data={data3} name="News" />
-      {/* Start of New Section */}
-      <MovieTvShowList data={data4} name="Movies & TV Shows" />
-
+        {/* Start of New Section */}
+        <NewsList data={data3} name="News" />
+        {/* Start of New Section */}
+        <MovieTvShowList data={data4} name="Movies & TV Shows" />
+      </Container>
       {/* Start of New Section */}
       <JoinConversation />
-      {/* Start of New Section */}
-      <Unwrapped />
-    </Container>
+      <Container>
+        {/* Start of New Section */}
+        <Unwrapped />
+      </Container>
+    </>
   );
 }

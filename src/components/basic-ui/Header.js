@@ -18,6 +18,9 @@ import classes from "./Header.module.css";
 
 import logo from "../../../public/images/logos/logo-light.png";
 
+// Profile Picture Icon here (dummy)
+import dpIcon from "../../../public/images/icons/dp.svg";
+
 import SignUp from "@/components/custom-components/sign-up/SignUp";
 import Login from "@/components/custom-components/sign-in/Login";
 
@@ -25,6 +28,12 @@ import Login from "@/components/custom-components/sign-in/Login";
 import { CiMenuFries } from "react-icons/ci";
 
 import {
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuGroup,
+  MenuItem,
+  MenuList,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -60,8 +69,7 @@ const BackdropExample = (props) => {
         closeOnOverlayClick={false}
         isCentered
         isOpen={props.isOpen}
-        onClose={props.onClose}
-      >
+        onClose={props.onClose}>
         {overlay}
         <ModalContent>
           <ModalHeader></ModalHeader>
@@ -107,8 +115,7 @@ const Header = () => {
         expand={expand}
         className="mb-3"
         style={{ background: "#fff" }}
-        sticky="top"
-      >
+        sticky="top">
         <Container>
           <Navbar.Brand as={Link} href="/">
             <Image
@@ -121,8 +128,7 @@ const Header = () => {
           </Navbar.Brand>
           <Navbar.Toggle
             aria-controls={`offcanvasNavbar-expand-${expand}`}
-            className={classes.toggle}
-          >
+            className={classes.toggle}>
             <CiMenuFries
               size={25}
               style={{ fontWeight: "bold", color: "#e86c44" }}
@@ -132,8 +138,7 @@ const Header = () => {
             id={`offcanvasNavbar-expand-${expand}`}
             aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
             placement="end"
-            style={{ width: "65%" }}
-          >
+            style={{ width: "65%" }}>
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
                 <Image
@@ -154,8 +159,7 @@ const Header = () => {
                     currentPath === "/reviews"
                       ? `${classes.activeLink} ${classes.links}`
                       : `${classes.notActiveLink} ${classes.links}`
-                  }
-                >
+                  }>
                   Reviews
                 </Nav.Link>
                 <Nav.Link
@@ -165,8 +169,7 @@ const Header = () => {
                     currentPath === "/news"
                       ? `${classes.activeLink} ${classes.links}`
                       : `${classes.notActiveLink} ${classes.links}`
-                  }
-                >
+                  }>
                   News
                 </Nav.Link>
                 <Nav.Link
@@ -176,8 +179,7 @@ const Header = () => {
                     currentPath === "/movies"
                       ? `${classes.activeLink} ${classes.links}`
                       : `${classes.notActiveLink} ${classes.links}`
-                  }
-                >
+                  }>
                   Movies
                 </Nav.Link>
                 <Nav.Link
@@ -187,8 +189,7 @@ const Header = () => {
                     currentPath === "/awards"
                       ? `${classes.activeLink} ${classes.links}`
                       : `${classes.notActiveLink} ${classes.links}`
-                  }
-                >
+                  }>
                   Awards
                 </Nav.Link>
                 <Nav.Link
@@ -198,20 +199,18 @@ const Header = () => {
                     currentPath === "/about-us"
                       ? `${classes.activeLink} ${classes.links}`
                       : `${classes.notActiveLink} ${classes.links}`
-                  }
-                >
+                  }>
                   About Us
                 </Nav.Link>
               </Nav>
               <Nav>
-                <Button
+                {/*  <Button
                   className={classes["sign-in"]}
                   onClick={() => {
                     onOpen();
                     setShowLogin(true);
                     setShowSignUp(false);
-                  }}
-                >
+                  }}>
                   Sign In
                 </Button>
                 <Button
@@ -220,10 +219,36 @@ const Header = () => {
                     onOpen();
                     setShowSignUp(true);
                     setShowLogin(false);
-                  }}
-                >
+                  }}>
                   Sign Up
-                </Button>
+                </Button> */}
+                <Menu>
+                  <MenuButton>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}>
+                      <Image
+                        src={dpIcon}
+                        alt="Profile Picture"
+                        width={30}
+                        priority
+                      />
+                      <span style={{ marginLeft: 10 }}>nayazubuko</span>
+                    </div>
+                  </MenuButton>
+                  <MenuList>
+                    <MenuGroup title="Profile">
+                      <MenuItem>My Account</MenuItem>
+                      <MenuItem>Payments </MenuItem>
+                    </MenuGroup>
+                    <MenuDivider />
+                    <MenuGroup title="Help">
+                      <MenuItem>Sign Out</MenuItem>
+                    </MenuGroup>
+                  </MenuList>
+                </Menu>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
