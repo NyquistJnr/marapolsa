@@ -5,6 +5,8 @@ import HorizontalScroll from "@/components/basic-ui/horizontal-scroll/Horizontal
 import LastestList from "@/components/custom-components/home-component/LastestList";
 import PopularList from "@/components/custom-components/home-component/PopularList";
 
+const isLoggedIn = true;
+
 // Images Needed
 import img from "../../public/images/templates-imgs/treandingimage1.png";
 import img2 from "../../public/images/templates-imgs/treandingimage2.png";
@@ -190,7 +192,24 @@ export default function Home() {
         <MovieTvShowList data={data4} name="Movies & TV Shows" />
       </Container>
       {/* Start of New Section */}
-      <JoinConversation />
+      {isLoggedIn ? (
+        <Container>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              margin: "30px 0",
+            }}>
+            <h4 style={{ fontWeight: "bold" }}>Reviews You Might Like</h4>
+            <p>See more</p>
+          </div>
+          <hr style={{ marginBottom: 20, marginTop: -15 }} />
+          <HorizontalScroll />
+        </Container>
+      ) : (
+        <JoinConversation />
+      )}
       <Container>
         {/* Start of New Section */}
         <Unwrapped />

@@ -43,6 +43,8 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
+const isLoggedIn = true;
+
 // Modal to Pop Sign In or Sign Up
 const BackdropExample = (props) => {
   const OverlayOne = () => (
@@ -204,51 +206,57 @@ const Header = () => {
                 </Nav.Link>
               </Nav>
               <Nav>
-                {/*  <Button
-                  className={classes["sign-in"]}
-                  onClick={() => {
-                    onOpen();
-                    setShowLogin(true);
-                    setShowSignUp(false);
-                  }}>
-                  Sign In
-                </Button>
-                <Button
-                  className={classes["sign-up"]}
-                  onClick={() => {
-                    onOpen();
-                    setShowSignUp(true);
-                    setShowLogin(false);
-                  }}>
-                  Sign Up
-                </Button> */}
-                <Menu>
-                  <MenuButton>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
+                {!isLoggedIn ? (
+                  <>
+                    <Button
+                      className={classes["sign-in"]}
+                      onClick={() => {
+                        onOpen();
+                        setShowLogin(true);
+                        setShowSignUp(false);
                       }}>
-                      <Image
-                        src={dpIcon}
-                        alt="Profile Picture"
-                        width={30}
-                        priority
-                      />
-                      <span style={{ marginLeft: 10 }}>nayazubuko</span>
-                    </div>
-                  </MenuButton>
-                  <MenuList>
-                    <MenuGroup title="Profile">
-                      <MenuItem>My Account</MenuItem>
-                      <MenuItem>Payments </MenuItem>
-                    </MenuGroup>
-                    <MenuDivider />
-                    <MenuGroup title="Help">
-                      <MenuItem>Sign Out</MenuItem>
-                    </MenuGroup>
-                  </MenuList>
-                </Menu>
+                      Sign In
+                    </Button>
+                    <Button
+                      className={classes["sign-up"]}
+                      onClick={() => {
+                        onOpen();
+                        setShowSignUp(true);
+                        setShowLogin(false);
+                      }}>
+                      Sign Up
+                    </Button>
+                  </>
+                ) : (
+                  <Menu>
+                    <MenuButton>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          marginBottom: 5,
+                        }}>
+                        <Image
+                          src={dpIcon}
+                          alt="Profile Picture"
+                          width={30}
+                          priority
+                        />
+                        <span style={{ marginLeft: 10 }}>nayazubuko</span>
+                      </div>
+                    </MenuButton>
+                    <MenuList>
+                      <MenuGroup title="Profile">
+                        <MenuItem>My Account</MenuItem>
+                        <MenuItem>Payments</MenuItem>
+                      </MenuGroup>
+                      <MenuDivider />
+                      <MenuGroup title="Help">
+                        <MenuItem>Sign Out</MenuItem>
+                      </MenuGroup>
+                    </MenuList>
+                  </Menu>
+                )}
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>

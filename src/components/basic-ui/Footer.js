@@ -50,7 +50,11 @@ const Footer = () => {
 
   return (
     <footer
-      style={{ backgroundColor: "#E86C44", padding: "60px 0", color: "#fff" }}>
+      style={{
+        backgroundColor: "#E86C44",
+        padding: "60px 0 30px 0",
+        color: "#fff",
+      }}>
       <Container>
         <div className="row">
           <div className="col-12 col-sm-12 col-md-6 col-lg-6">
