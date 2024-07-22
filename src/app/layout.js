@@ -1,7 +1,11 @@
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
+import { CProviders } from "./CProvider";
+import Header from "@/components/basic-ui/Header";
+import Footer from "@/components/basic-ui/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const plus_jakarta_sans = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",
@@ -11,7 +15,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={plus_jakarta_sans.className}>
+        <CProviders>
+          <Header />
+          {children}
+          <Footer />
+        </CProviders>
+      </body>
     </html>
   );
 }

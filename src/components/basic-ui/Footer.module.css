@@ -1,0 +1,62 @@
+.email-parent {
+  position: relative;
+}
+
+.email-icon {
+  position: absolute;
+  left: 10px;
+  top: 0;
+  width: 20px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputSpace {
+  padding-left: 50px;
+  background-color: #e86c44; /* Body background color */
+  border: 1px solid white; /* White border */
+  color: white; /* Input text color */
+}
+
+.inputSpace::placeholder {
+  color: white; /* Placeholder text color */
+}
+
+.inputSpace:focus {
+  background-color: #e86c44; /* Maintain body background color on focus */
+  border-color: white; /* Maintain white border on focus */
+  color: white; /* Maintain white text color on focus */
+}
+
+.subscribeBtn {
+  background-color: #fff;
+  color: #e86c44;
+  border: 1px solid #fff;
+}
+
+.subscribeBtn:hover,
+.subscribeBtn:active {
+  background-color: #ccc !important;
+  color: #e86c44 !important;
+  border: 1px solid #ccc !important;
+}
+
+@media (max-width: 767px) {
+  .iconWidth {
+    width: 65%;
+  }
+}
+
+@media (min-width: 768px) {
+  .iconWidth {
+    width: 65%;
+  }
+}
+
+@media (min-width: 992px) {
+  .iconWidth {
+    width: 45%;
+  }
+}
