@@ -190,8 +190,7 @@ const SignUp = (props) => {
           <div
             style={{
               marginTop: -15,
-            }}
-          >
+            }}>
             <Form.Text style={{ color: colorMode === "dark" ? "white" : "" }}>
               Create a strong password with at least 8 characters, including one
               uppercase letter, one number, and one special character.
@@ -224,7 +223,7 @@ const SignUp = (props) => {
             />
             {confirmPasswordError && (
               <Form.Text style={{ color: "red", fontSize: 12 }}>
-                The password isn't the same
+                The password isn&apos;t the same
               </Form.Text>
             )}
           </div>
@@ -273,8 +272,7 @@ const SignUp = (props) => {
             height: 55,
             color: colorMode === "dark" ? "#555" : "",
           }}
-          disabled={!isFormValid}
-        >
+          disabled={!isFormValid}>
           Sign Up
         </Button>
       </Form>
