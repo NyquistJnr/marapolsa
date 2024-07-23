@@ -6,8 +6,8 @@ import { mode } from "@chakra-ui/theme-tools";
 export function CProviders({ children }) {
   const theme = extendTheme({
     config: {
-      initialColorMode: "system",
-      useSystemColorMode: true,
+      initialColorMode: "light",
+      useSystemColorMode: false,
     },
     styles: {
       global: (props) => ({
