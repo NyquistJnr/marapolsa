@@ -44,24 +44,30 @@ const HorizontalScroll = () => {
         {brands.map((item) => (
           <section
             key={item.title}
-            className="col-12 col-sm-12 col-md-6 col-lg-3">
+            className="col-12 col-sm-12 col-md-6 col-lg-3"
+          >
             <div className={classes.cardConatiner}>
               <Image
                 src={item.img}
                 alt={item.title}
-                width="30%"
                 height="auto"
-                style={{ width: "70%" }}
+                style={{ width: "85%" }}
                 priority
               />
               <div
-                style={{ textAlign: "left", padding: "0 25px", marginTop: 15 }}>
+                style={{
+                  textAlign: "left",
+                  marginTop: 15,
+                  width: "85%",
+                }}
+              >
                 <h4
                   style={{
                     fontSize: 18,
                     marginBottom: 20,
                     fontWeight: "bold",
-                  }}>
+                  }}
+                >
                   {item.title}
                 </h4>
                 <p style={{ fontSize: 12, marginBottom: 0 }}>

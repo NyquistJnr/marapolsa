@@ -1,0 +1,7 @@
+.goBackBtn,
+.goBackBtn:hover,
+.goBackBtn:active {
+  background-color: transparent !important;
+  border: 1px solid transparent !important;
+  color: #000 !important;
+}

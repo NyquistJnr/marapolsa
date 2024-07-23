@@ -7,14 +7,44 @@
   background-color: transparent;
 }
 
-.cardConatiner {
-  border: 2px solid #a19f9d;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 0 0 0;
-  height: 335px;
-  border-radius: 10px;
-  width: 90%;
+@media (max-width: 399px) {
+  .cardConatiner {
+    border: 2px solid #a19f9d;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0 0 0;
+    height: 335px;
+    border-radius: 10px;
+    width: 90%;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 767px) {
+  .cardConatiner {
+    border: 2px solid #a19f9d;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0 0 0;
+    height: 395px;
+    border-radius: 10px;
+    width: 90%;
+  }
+}
+
+@media (min-width: 768px) {
+  .cardConatiner {
+    border: 2px solid #a19f9d;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0 0 0;
+    height: 335px;
+    border-radius: 10px;
+    width: 90%;
+  }
 }
