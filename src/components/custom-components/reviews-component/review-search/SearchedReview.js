@@ -184,17 +184,17 @@ const SearchedReviewComponent = () => {
             ability to immerse herself in the role and bring the character to
             life was truly impressive, solidifying her status as a top-tier
             actress. Uzor Arukwe also stood out with his amazing performance. He
-            has cemented his place as one of Nigeria’s best actors, showcasing
-            his exceptional talent and versatility. His portrayal was nuanced
-            and compelling, demonstrating his remarkable range and dedication to
-            his craft. Iyabo's performance was noteworthy as well. Despite a few
-            instances of overacting, she brought a unique energy and presence to
-            her role. Her efforts contributed significantly to the film, and
-            even in the scenes where her acting was a bit exaggerated, she
-            managed to keep the audience engaged and entertained. Overall, the
-            cast's performances were a highlight of the film, each actor
-            bringing something special to the table and enhancing the overall
-            impact of the story.
+            has cemented his place as one of Nigeria&apos;s best actors,
+            showcasing his exceptional talent and versatility. His portrayal was
+            nuanced and compelling, demonstrating his remarkable range and
+            dedication to his craft. Iyabo&apos;s performance was noteworthy as
+            well. Despite a few instances of overacting, she brought a unique
+            energy and presence to her role. Her efforts contributed
+            significantly to the film, and even in the scenes where her acting
+            was a bit exaggerated, she managed to keep the audience engaged and
+            entertained. Overall, the cast&apos;s performances were a highlight
+            of the film, each actor bringing something special to the table and
+            enhancing the overall impact of the story.
           </p>
         </div>
         <div>
@@ -202,27 +202,28 @@ const SearchedReviewComponent = () => {
           <hr />
           <p>
             Momiwa was the perfect protagonist, effortlessly capturing the
-            audience's attention with her compelling and relatable performance.
-            She brought a depth and authenticity to her character that made it
-            easy for viewers to root for her. Her portrayal was both powerful
-            and nuanced, making her a standout element of the story. Naeto was a
-            well-rounded character as well, adding layers of complexity and
-            richness to the narrative. His development throughout the film was
-            handled with care, making his journey both believable and engaging.
-            The interplay between Momiwa and Naeto provided a solid backbone for
-            the story, highlighting their strengths as individual characters and
-            as a dynamic duo. The children in the film were absolutely adorable,
-            bringing a sense of innocence and charm that was delightful to
-            watch. However, Vida's character could have benefited from better
-            lines, which would have allowed her to shine even more. Despite
-            this, the children's performances added a heartwarming touch to the
-            film, enhancing its emotional depth. Kiki played the role of the
-            villain with a commendable effort. Her portrayal was decent,
-            effectively embodying the antagonistic force in the story. While her
-            character might not have been the most menacing villain ever seen,
-            she brought a certain flair and intensity that made her a credible
-            adversary. Her interactions with the other characters added tension
-            and drama, contributing to the overall suspense of the plot.
+            audience&apos;s attention with her compelling and relatable
+            performance. She brought a depth and authenticity to her character
+            that made it easy for viewers to root for her. Her portrayal was
+            both powerful and nuanced, making her a standout element of the
+            story. Naeto was a well-rounded character as well, adding layers of
+            complexity and richness to the narrative. His development throughout
+            the film was handled with care, making his journey both believable
+            and engaging. The interplay between Momiwa and Naeto provided a
+            solid backbone for the story, highlighting their strengths as
+            individual characters and as a dynamic duo. The children in the film
+            were absolutely adorable, bringing a sense of innocence and charm
+            that was delightful to watch. However, Vida&apos;s character could
+            have benefited from better lines, which would have allowed her to
+            shine even more. Despite this, the children&apos;s performances
+            added a heartwarming touch to the film, enhancing its emotional
+            depth. Kiki played the role of the villain with a commendable
+            effort. Her portrayal was decent, effectively embodying the
+            antagonistic force in the story. While her character might not have
+            been the most menacing villain ever seen, she brought a certain
+            flair and intensity that made her a credible adversary. Her
+            interactions with the other characters added tension and drama,
+            contributing to the overall suspense of the plot.
           </p>
         </div>
         <div>
@@ -236,10 +237,10 @@ const SearchedReviewComponent = () => {
             curiosity, eagerly anticipating how the plot would unfold. As the
             narrative progressed, these questions were answered beautifully,
             weaving together the various threads of the story in a satisfying
-            and cohesive manner.  However, there was one aspect that felt
-            somewhat lacking: the explanation of Momiwa's family. This missing
-            piece left a slight gap in the otherwise seamless narrative. A
-            deeper exploration of her family background could have added even
+            and cohesive manner. However, there was one aspect that felt
+            somewhat lacking: the explanation of Momiwa&apos;s family. This
+            missing piece left a slight gap in the otherwise seamless narrative.
+            A deeper exploration of her family background could have added even
             more depth to her character and enriched the overall story. Despite
             this omission, the film managed to maintain its charm and impact.
           </p>
@@ -251,13 +252,13 @@ const SearchedReviewComponent = () => {
             This movie was a simple, wholesome, and thoroughly entertaining
             experience. It captured the essence of feel-good storytelling,
             offering a narrative that resonated with audiences on multiple
-            levels. The filmmakers got almost everything right. Blessing Nze's
-            acting was a standout element, bringing depth and authenticity to
-            her character. Her exceptional performance added significant
-            richness to the story. Overall, the movie was delightful and
-            memorable. Its simplicity and wholesomeness, combined with stellar
-            acting and meaningful lessons, made it a true gem. The filmmakers
-            deserve commendation for their good work.
+            levels. The filmmakers got almost everything right. Blessing
+            Nze&apos;s acting was a standout element, bringing depth and
+            authenticity to her character. Her exceptional performance added
+            significant richness to the story. Overall, the movie was delightful
+            and memorable. Its simplicity and wholesomeness, combined with
+            stellar acting and meaningful lessons, made it a true gem. The
+            filmmakers deserve commendation for their good work.
           </p>
         </div>
         <div style={{ fontSize: 22, display: "flex", flexWrap: "wrap" }}>

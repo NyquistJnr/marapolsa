@@ -25,7 +25,7 @@ const ReviewModal = () => {
   };
   return (
     <div className="text-center py-4">
-      <h3 className="text-center">You can't leave a comment... yet</h3>
+      <h3 className="text-center">You &apos;t leave a comment... yet</h3>
       <p className="text-center">
         To join the conversation, you need to signup or login
       </p>
