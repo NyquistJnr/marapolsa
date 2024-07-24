@@ -1,0 +1,43 @@
+/* components/CommentList.module.css */
+.commentListContainer {
+  max-height: 450px; /* Adjust the height as needed */
+  overflow-y: auto;
+  background-color: transparent;
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.commentCard {
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.time {
+  color: #a0a0a0;
+}
+
+.content {
+  color: #333;
+}
+
+.replies,
+.likes {
+  color: #a0a0a0;
+  margin-right: 15px;
+}
+
+.bi-chat,
+.bi-heart {
+  margin-left: 5px;
+}

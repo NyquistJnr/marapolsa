@@ -16,6 +16,8 @@ import img1 from "../../../../../public/images/templates-imgs/searchedReviewMovi
 import likeIcon from "../../../../../public/images/icons/heart.svg";
 import commentIcon from "../../../../../public/images/icons/comment.svg";
 import saveIcon from "../../../../../public/images/icons/save.svg";
+import likedSaveIcon from "../../../../../public/images/icons/likedSave.svg";
+import likedHeartIcon from "../../../../../public/images/icons/likedHeart.svg";
 
 // Social Handle Icons import
 import { FaWhatsapp } from "react-icons/fa";
@@ -39,6 +41,8 @@ import {
 } from "@chakra-ui/react";
 
 import { FaChevronRight } from "react-icons/fa6";
+import ReviewCommentBox from "./ReviewComment";
+import CommentList from "./ReviewList";
 
 const isLoggedIn = false;
 
@@ -94,6 +98,16 @@ const SearchedReviewComponent = () => {
     inactiveBoxColor: "#dddddd",
     inactiveBoxBorderColor: "#a8a8a8",
   };
+
+  // Comment Box
+  const [showCommentBox, setShowCommentBox] = useState(false);
+
+  // Like Post
+  const [likedPost, setLikedPost] = useState(false);
+
+  // Bookmark Post
+  const [bookmarkPost, setBookmarkPost] = useState(false);
+
   return (
     <main style={{ marginBottom: 50 }}>
       <BackdropExample1 isOpen={isOpen} onClose={onClose} />
@@ -283,14 +297,17 @@ const SearchedReviewComponent = () => {
         >
           <div style={{ display: "flex", padding: "10px 0" }}>
             <Image
-              src={likeIcon}
+              src={likedPost ? likedHeartIcon : likeIcon}
               alt="Like Icon"
               priority
               width={32}
               style={{ marginRight: 10 }}
               onClick={() => {
                 if (isLoggedIn) {
-                  console.log("You're Logged In!");
+                  setLikedPost((prev) => {
+                    // console.log("You liked this post!");
+                    return !prev;
+                  });
                 } else {
                   onOpen();
                 }
@@ -304,21 +321,24 @@ const SearchedReviewComponent = () => {
               style={{ marginRight: 10 }}
               onClick={() => {
                 if (isLoggedIn) {
-                  console.log("You're Logged In!");
+                  setShowCommentBox((prev) => !prev);
                 } else {
                   onOpen();
                 }
               }}
             />
             <Image
-              src={saveIcon}
+              src={bookmarkPost ? likedSaveIcon : saveIcon}
               alt="Save Icon"
               priority
               width={30}
               style={{ marginRight: 10 }}
               onClick={() => {
                 if (isLoggedIn) {
-                  console.log("You're Logged In!");
+                  setBookmarkPost((prev) => {
+                    // console.log("You're Logged In!");
+                    return !prev;
+                  });
                 } else {
                   onOpen();
                 }
@@ -334,6 +354,12 @@ const SearchedReviewComponent = () => {
             <FaInstagram size={30} style={{ marginRight: 10 }} />
             <FiFacebook size={30} />
           </div>
+        </section>
+        <section style={{ marginTop: 20, marginBottom: 20 }}>
+          {showCommentBox && <ReviewCommentBox />}
+        </section>
+        <section style={{ marginTop: 20, marginBottom: 20 }}>
+          <CommentList />
         </section>
         <div style={{ marginTop: 50 }}>
           <ReviewPack title="Similar Reviews" />

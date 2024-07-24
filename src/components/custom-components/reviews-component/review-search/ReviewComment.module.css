@@ -1,0 +1,47 @@
+/* components/CommentBox.module.css */
+.commentBox {
+  border: 1px solid #333;
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.textArea {
+  border: none;
+  resize: none;
+  background-color: transparent;
+}
+
+.textArea:focus {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.charCount {
+  color: #a0a0a0;
+}
+
+.commentButton {
+  background-color: #cc5a34;
+  border: none;
+  color: white;
+}
+
+.commentButton:hover,
+.commentButton:active {
+  background-color: #962804 !important;
+  border: none;
+  color: white !important;
+}
+
+.commentButton:disabled {
+  background-color: #e86c44;
+  opacity: 0.6;
+  color: #fff;
+}

@@ -43,7 +43,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
-const isLoggedIn = false;
+const isLoggedIn = true;
 
 // Modal to Pop Sign In or Sign Up
 export const BackdropExample = (props) => {
