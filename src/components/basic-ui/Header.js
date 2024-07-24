@@ -43,10 +43,10 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
-const isLoggedIn = true;
+const isLoggedIn = false;
 
 // Modal to Pop Sign In or Sign Up
-const BackdropExample = (props) => {
+export const BackdropExample = (props) => {
   const OverlayOne = () => (
     <ModalOverlay
       bg="blackAlpha.300"
@@ -162,7 +162,8 @@ const Header = () => {
                   as={Link}
                   href="/reviews"
                   className={
-                    currentPath === "/reviews"
+                    currentPath === "/reviews" ||
+                    currentPath === "/reviews/search"
                       ? `${classes.activeLink} ${classes.links}`
                       : `${classes.notActiveLink} ${classes.links}`
                   }

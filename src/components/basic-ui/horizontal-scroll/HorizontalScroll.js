@@ -1,3 +1,6 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import { Container } from "react-bootstrap";
 import classes from "./HorizontalScroll.module.css";
 
@@ -38,6 +41,7 @@ const brands = [
 ];
 
 const HorizontalScroll = () => {
+  const router = useRouter();
   return (
     <Container>
       <main className={classes.bodyContainer}>
@@ -67,6 +71,7 @@ const HorizontalScroll = () => {
                     marginBottom: 20,
                     fontWeight: "bold",
                   }}
+                  onClick={() => router.push("reviews/search")}
                 >
                   {item.title}
                 </h4>

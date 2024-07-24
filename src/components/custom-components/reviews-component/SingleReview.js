@@ -1,9 +1,11 @@
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import { Container } from "react-bootstrap";
 import classes from "./SingleReview.module.css";
 
 const SingleReviewComponent = (props) => {
+  const router = useRouter();
   return (
     <>
       <div className="row">
@@ -31,7 +33,12 @@ const SingleReviewComponent = (props) => {
           }}
         >
           <div>
-            <h1 className={classes.heading1}>{props.title}</h1>
+            <h1
+              className={classes.heading1}
+              onClick={() => router.push("reviews/search")}
+            >
+              {props.title}
+            </h1>
             <p className={classes.description}>{props.description}</p>
           </div>
           <div className={classes.subHeading}>
