@@ -1,0 +1,15 @@
+.heading1 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.authorSection {
+  font-size: 14px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.description {
+  font-size: 14px;
+}

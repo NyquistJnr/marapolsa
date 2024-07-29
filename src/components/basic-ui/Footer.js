@@ -54,7 +54,8 @@ const Footer = () => {
         backgroundColor: "#E86C44",
         padding: "60px 0 30px 0",
         color: "#fff",
-      }}>
+      }}
+    >
       <Container>
         <div className="row">
           <div className="col-12 col-sm-12 col-md-6 col-lg-6">
@@ -123,14 +124,16 @@ const Footer = () => {
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
-            }}>
+            }}
+          >
             <div
               style={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "end",
                 justifyContent: "space-between",
-              }}>
+              }}
+            >
               <Image
                 src={whiteLogo}
                 alt="Marapolsa White Logo"
@@ -148,7 +151,8 @@ const Footer = () => {
                   display: "flex",
                   justifyContent: "space-evenly",
                 }}
-                className={classes.iconWidth}>
+                className={classes.iconWidth}
+              >
                 <Image
                   src={icon1}
                   priority
@@ -182,17 +186,23 @@ const Footer = () => {
               </div>
             </div>
             <div
+              className="row"
               style={{
                 fontSize: 14,
-                display: "flex",
-                justifyContent: "space-evenly",
                 width: "100%",
                 marginTop: 30,
-              }}>
-              <p style={{ textAlign: "center" }}>Contact Us</p>
-              <p style={{ textAlign: "center" }}>Advertise with us</p>
-              <p style={{ textAlign: "center" }}>Privacy Policy</p>
-              <p style={{ textAlign: "center" }}>Terms & Conditions</p>
+              }}
+            >
+              <p className="col-6 col-md-6 col-lg-3 text-center">Contact Us</p>
+              <p className="col-6 col-md-6 col-lg-3 text-center">
+                Advertise with us
+              </p>
+              <p className="col-6 col-md-6 col-lg-3 text-center">
+                Privacy Policy
+              </p>
+              <p className="col-6 col-md-6 col-lg-3 text-center">
+                Terms & Conditions
+              </p>
             </div>
           </div>
         </div>

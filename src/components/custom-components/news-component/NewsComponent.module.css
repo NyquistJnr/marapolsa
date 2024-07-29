@@ -1,6 +1,22 @@
 /* pages/index.module.css */
 
 .heading1 {
-  font-size: 24px;
+  font-size: 30px;
   margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.seeMoreBtn {
+  color: #e86c44;
+  background-color: transparent;
+  border: 1px solid #e86c44;
+  padding: 10px 25px;
+}
+
+.seeMoreBtn:hover,
+.seeMoreBtn:active {
+  color: #fff !important;
+  background-color: #e86c44 !important;
+  border: 1px solid #e86c44 !important;
+  padding: 10px 25px;
 }

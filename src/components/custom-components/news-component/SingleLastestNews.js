@@ -11,22 +11,7 @@ const NewsItem = (props) => {
     <>
       <div className="row">
         <div
-          className="col-12 col-sm-12 col-md-4 col-lg-3 py-2"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-          }}
-        >
-          <Image
-            className={classes.img}
-            src={props.src}
-            alt={props.title}
-            priority
-          />
-        </div>
-        <div
-          className="col-12 col-sm-12 col-md-8 col-lg-9 py-2"
+          className="col-12 col-sm-12 col-md-8 col-lg-9 py-2 order-2 order-md-1"
           style={{
             display: "flex",
             flexDirection: "column",
@@ -47,19 +32,26 @@ const NewsItem = (props) => {
             <span style={{ fontWeight: "bold", marginLeft: 4 }}>
               {props.author}
             </span>
-            <span style={{ marginLeft: 30 }}>{props.date}</span>
-          </div>
-          <div>
-            <div className={classes.subHeading}>
-              <span style={{ fontWeight: "bold" }}>Genre:</span> {props.time}
-            </div>
-            <div className={classes.subHeading}>
-              <span style={{ fontWeight: "bold" }}>Industry:</span>{" "}
-              {props.author}
-            </div>
+            <span style={{ marginLeft: 20 }}>{props.time} ago</span>
           </div>
         </div>
+        <div
+          className="col-12 col-sm-12 col-md-4 col-lg-3 py-2 order-1 order-md-2"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <Image
+            className={classes.img}
+            src={props.src}
+            alt={props.title}
+            priority
+          />
+        </div>
       </div>
+      <hr style={{ marginTop: 20, border: "1.4px solid #000" }} />
     </>
   );
 };
