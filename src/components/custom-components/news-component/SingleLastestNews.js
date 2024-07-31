@@ -19,12 +19,7 @@ const NewsItem = (props) => {
           }}
         >
           <div>
-            <h1
-              className={classes.heading1}
-              onClick={() => router.push("reviews/search")}
-            >
-              {props.title}
-            </h1>
+            <h1 className={classes.heading1}>{props.title}</h1>
             <p className={classes.description}>{props.description}</p>
           </div>
           <div className={classes.subHeading}>

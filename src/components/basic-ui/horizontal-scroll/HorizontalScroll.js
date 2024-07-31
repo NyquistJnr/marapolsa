@@ -58,6 +58,7 @@ const HorizontalScroll = () => {
                 height="auto"
                 style={{ width: "85%" }}
                 priority
+                className={classes.imgStyle}
               />
               <div
                 style={{

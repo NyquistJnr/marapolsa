@@ -3,9 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Form, Button, InputGroup } from "react-bootstrap";
-import styles from "./ReviewComment.module.css";
+import styles from "./CommentBox.module.css";
 
-import dpImage from "../../../../../public/images/icons/dp.svg";
+import dpImage from "../../../public/images/icons/dp.svg";
 
 const CommentBox = () => {
   const [comment, setComment] = useState("");

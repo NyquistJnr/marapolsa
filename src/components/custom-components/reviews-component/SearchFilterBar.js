@@ -19,6 +19,14 @@ const SearchFilterBar = (props) => {
     console.log(item);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (searchRef.current.value.length === 0) {
+    } else {
+      handleSearchedSection(searchRef.current.value);
+    }
+  };
+
   return (
     <main className={styles.searchFilterContainer}>
       <Container>
@@ -34,9 +42,7 @@ const SearchFilterBar = (props) => {
             >
               <Form
                 className="flex-grow-1 d-flex align-items-center position-relative"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                }}
+                onSubmit={handleSubmit}
               >
                 <FiSearch
                   className={styles.searchIcon}
@@ -50,13 +56,8 @@ const SearchFilterBar = (props) => {
                   ref={searchRef}
                 />
                 <Button
-                  className={styles.searchButton}
-                  onClick={() => {
-                    if (searchRef.current.value.length === 0) {
-                    } else {
-                      handleSearchedSection(searchRef.current.value);
-                    }
-                  }}
+                  className={`${styles.searchButton} d-none d-md-flex`}
+                  type="submit"
                 >
                   Search
                 </Button>

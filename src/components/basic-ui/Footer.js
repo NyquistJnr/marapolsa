@@ -66,7 +66,7 @@ const Footer = () => {
                 updates. Join now!
               </p>
               <Form>
-                <Form.Group controlId="formBasicEmail">
+                <Form.Group controlId="email">
                   <div className={`${classes["email-parent"]} mb-3`}>
                     <Image
                       src={emailImage}

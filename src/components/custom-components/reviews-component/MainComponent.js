@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Container } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
-import ReviewPack from "./ReviewPack";
 import SearchFilterBar from "./SearchFilterBar";
 import SearchedReview from "./SearchedReview";
+import HorRecommendation from "@/components/general-components/HorRecommendation";
 
 import classes from "./MainComponent.module.css";
 
@@ -13,7 +13,7 @@ const ReviewComponent = () => {
   const [sumbitSearch, setSumbitSearch] = useState("");
 
   const handleSearchFilter = (e) => {
-    console.log(e);
+    // console.log(e);
     setSumbitSearch(e);
   };
   return (
@@ -22,19 +22,19 @@ const ReviewComponent = () => {
       {!!!sumbitSearch ? (
         <>
           <div style={{ marginBottom: 50 }}>
-            <ReviewPack title="Trending Reviews" />
+            <HorRecommendation title="Trending Reviews" />
           </div>
           <div style={{ marginBottom: 50 }}>
-            <ReviewPack title="Latest Reviews" />
+            <HorRecommendation title="Latest Reviews" />
           </div>
           <div style={{ marginBottom: 50 }}>
-            <ReviewPack title="Most Liked Reviews" />
+            <HorRecommendation title="Most Liked Reviews" />
           </div>
           <div style={{ marginBottom: 50 }}>
-            <ReviewPack title="Movies Reviews" />
+            <HorRecommendation title="Movies Reviews" />
           </div>
           <div style={{ marginBottom: 50 }}>
-            <ReviewPack title="TV Shows Reviews" />
+            <HorRecommendation title="TV Shows Reviews" />
           </div>
           <div className="text-center" style={{ marginBottom: 40 }}>
             <Button className={classes.seeMoreBtn}>See more</Button>

@@ -1,6 +1,7 @@
-// components/CommentList.js
+"use client";
+
 import { Card, Image } from "react-bootstrap";
-import styles from "./ReviewList.module.css";
+import styles from "./CommentList.module.css";
 
 const comments = [
   {

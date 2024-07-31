@@ -1,13 +1,13 @@
 "use client";
 
-import { BackdropExample } from "@/components/basic-ui/Header";
+import { BackdropSignUpLogIn } from "@/components/basic-ui/Header";
 import { useDisclosure } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
-import classes from "./ReviewModal.module.css";
+import classes from "./JoinModal.module.css";
 
-const ReviewModal = () => {
+const JoinConversationModal = () => {
   // Start
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -25,7 +25,7 @@ const ReviewModal = () => {
   };
   return (
     <div className="text-center py-4">
-      <h3 className="text-center">You &apos;t leave a comment... yet</h3>
+      <h3 className="text-center">You can&apos;t leave a comment... yet</h3>
       <p className="text-center">
         To join the conversation, you need to signup or login
       </p>
@@ -39,7 +39,7 @@ const ReviewModal = () => {
       >
         Join the conversation
       </Button>
-      <BackdropExample
+      <BackdropSignUpLogIn
         isOpen={isOpen}
         onClose={onClose}
         showLogin={showLogin}
@@ -51,4 +51,4 @@ const ReviewModal = () => {
   );
 };
 
-export default ReviewModal;
+export default JoinConversationModal;

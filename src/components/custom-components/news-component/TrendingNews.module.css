@@ -13,3 +13,11 @@
 .description {
   font-size: 14px;
 }
+
+.imgStyle {
+  transition: transform 0.3s ease-in-out;
+}
+
+.imgStyle:hover {
+  transform: scale(1.1);
+}

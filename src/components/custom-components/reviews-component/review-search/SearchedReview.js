@@ -1,137 +1,21 @@
 "use client";
 
-import { useState } from "react";
-
 import Image from "next/image";
-import Link from "next/link";
 
-import { Button, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import classes from "./SearchedReview.module.css";
-
-import "@smastrom/react-rating/style.css";
 
 import img1 from "../../../../../public/images/templates-imgs/searchedReviewMovie.png";
 
-// Icons
-import likeIcon from "../../../../../public/images/icons/heart.svg";
-import commentIcon from "../../../../../public/images/icons/comment.svg";
-import saveIcon from "../../../../../public/images/icons/save.svg";
-import likedSaveIcon from "../../../../../public/images/icons/likedSave.svg";
-import likedHeartIcon from "../../../../../public/images/icons/likedHeart.svg";
-
-// Social Handle Icons import
-import { FaWhatsapp } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { FaInstagram } from "react-icons/fa";
-import { FiFacebook } from "react-icons/fi";
 import ReviewPack from "../ReviewPack";
-import { Rating } from "@smastrom/react-rating";
-import ReviewModal from "../ReviewModal";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-  useDisclosure,
-} from "@chakra-ui/react";
 
-import { FaChevronRight } from "react-icons/fa6";
-import ReviewCommentBox from "./ReviewComment";
-import CommentList from "./ReviewList";
-
-const isLoggedIn = false;
-
-const BackdropExample1 = (props) => {
-  const OverlayOne = () => (
-    <ModalOverlay
-      bg="blackAlpha.300"
-      backdropInvert="80%"
-      backdropFilter="blur(5px) hue-rotate(10deg)"
-    />
-  );
-
-  const [overlay, setOverlay] = useState(<OverlayOne />);
-
-  return (
-    <>
-      <Modal isCentered isOpen={props.isOpen} onClose={props.onClose}>
-        {overlay}
-        <ModalContent>
-          <ModalHeader></ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <ReviewModal />
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-    </>
-  );
-};
+import CommentShare from "@/components/general-components/CommentShare";
+import RatingComponent from "@/components/general-components/RatingComponent";
 
 const SearchedReviewComponent = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  // Start
-  const [rating, setRating] = useState(4);
-  const Star = (
-    <path d="M62 25.154H39.082L32 3l-7.082 22.154H2l18.541 13.693L13.459 61L32 47.309L50.541 61l-7.082-22.152L62 25.154z" />
-  );
-  const customStyles = {
-    itemShapes: Star,
-    boxBorderWidth: 2,
-
-    activeFillColor: ["#FEE2E2", "#FFEDD5", "#FEF9C3", "#ECFCCB", "#D1FAE5"],
-    activeBoxColor: ["#da1600", "#db711a", "#dcb000", "#61bb00", "#009664"],
-    activeBoxBorderColor: [
-      "#c41400",
-      "#d05e00",
-      "#cca300",
-      "#498d00",
-      "#00724c",
-    ],
-
-    inactiveFillColor: "white",
-    inactiveBoxColor: "#dddddd",
-    inactiveBoxBorderColor: "#a8a8a8",
-  };
-
-  // Comment Box
-  const [showCommentBox, setShowCommentBox] = useState(false);
-
-  // Like Post
-  const [likedPost, setLikedPost] = useState(false);
-
-  // Bookmark Post
-  const [bookmarkPost, setBookmarkPost] = useState(false);
-
   return (
     <main style={{ marginBottom: 50 }}>
-      <BackdropExample1 isOpen={isOpen} onClose={onClose} />
       <Container>
-        <Breadcrumb
-          spacing="8px"
-          separator={<FaChevronRight color="gray.500" />}
-        >
-          <BreadcrumbItem>
-            <BreadcrumbLink as={Link} href="/">
-              Home
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-
-          <BreadcrumbItem>
-            <BreadcrumbLink as={Link} href="/reviews">
-              Reviews
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-
-          <BreadcrumbItem isCurrentPage>
-            <BreadcrumbLink>Detail</BreadcrumbLink>
-          </BreadcrumbItem>
-        </Breadcrumb>
         <div className="row">
           <div className="col-12 col-sm-12 col-md-5 col-lg-3 py-2">
             <Image
@@ -275,92 +159,8 @@ const SearchedReviewComponent = () => {
             filmmakers deserve commendation for their good work.
           </p>
         </div>
-        <div style={{ fontSize: 22, display: "flex", flexWrap: "wrap" }}>
-          <b>Top Rating:</b>8.5/10{" "}
-          <Rating
-            style={{ maxWidth: 190, marginLeft: 10 }}
-            value={rating}
-            onChange={setRating}
-            itemStyles={customStyles}
-            radius="large"
-            spaceBetween="small"
-            spaceInside="large"
-          />
-        </div>
-        <section
-          style={{
-            marginTop: 20,
-            display: "flex",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-          }}
-        >
-          <div style={{ display: "flex", padding: "10px 0" }}>
-            <Image
-              src={likedPost ? likedHeartIcon : likeIcon}
-              alt="Like Icon"
-              priority
-              width={32}
-              style={{ marginRight: 10 }}
-              onClick={() => {
-                if (isLoggedIn) {
-                  setLikedPost((prev) => {
-                    // console.log("You liked this post!");
-                    return !prev;
-                  });
-                } else {
-                  onOpen();
-                }
-              }}
-            />
-            <Image
-              src={commentIcon}
-              alt="Comment Icon"
-              priority
-              width={30}
-              style={{ marginRight: 10 }}
-              onClick={() => {
-                if (isLoggedIn) {
-                  setShowCommentBox((prev) => !prev);
-                } else {
-                  onOpen();
-                }
-              }}
-            />
-            <Image
-              src={bookmarkPost ? likedSaveIcon : saveIcon}
-              alt="Save Icon"
-              priority
-              width={30}
-              style={{ marginRight: 10 }}
-              onClick={() => {
-                if (isLoggedIn) {
-                  setBookmarkPost((prev) => {
-                    // console.log("You're Logged In!");
-                    return !prev;
-                  });
-                } else {
-                  onOpen();
-                }
-              }}
-            />
-          </div>
-          <div
-            style={{ display: "flex", alignItems: "center", padding: "10px 0" }}
-          >
-            <span style={{ marginRight: 10 }}>Share:</span>
-            <FaWhatsapp size={30} style={{ marginRight: 10 }} />
-            <FaXTwitter size={30} style={{ marginRight: 10 }} />
-            <FaInstagram size={30} style={{ marginRight: 10 }} />
-            <FiFacebook size={30} />
-          </div>
-        </section>
-        <section style={{ marginTop: 20, marginBottom: 20 }}>
-          {showCommentBox && <ReviewCommentBox />}
-        </section>
-        <section style={{ marginTop: 20, marginBottom: 20 }}>
-          <CommentList />
-        </section>
+        <RatingComponent />
+        <CommentShare />
         <div style={{ marginTop: 50 }}>
           <ReviewPack title="Similar Reviews" />
         </div>

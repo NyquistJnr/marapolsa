@@ -1,12 +1,12 @@
 // pages/index.js
+"use client";
+
+import { Button, Container } from "react-bootstrap";
 
 import TrendingNews from "./TrendingNews";
 import NewsItem from "./SingleLastestNews";
-import NewsSearchFilterBar from "./NewsSearchFilter";
-
+import MainSearchFilterBar from "@/components/general-components/MainSearchFilter";
 import styles from "./NewsComponent.module.css";
-
-import { Button, Container } from "react-bootstrap";
 
 // Template Image
 import img1 from "../../../../public/images/templates-imgs/showReview1.png";
@@ -48,9 +48,13 @@ const NewsComponent = () => {
     // Repeat for the other news items
   ];
 
+  const handleSearchFilter = (e) => {
+    // console.log(e);
+  };
+
   return (
     <>
-      <NewsSearchFilterBar />
+      <MainSearchFilterBar searchedSection={(e) => handleSearchFilter(e)} />
       <Container>
         <TrendingNews />
         <h1 className={styles.heading1}>Latest News</h1>

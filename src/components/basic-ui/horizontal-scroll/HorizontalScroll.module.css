@@ -7,6 +7,14 @@
   background-color: transparent;
 }
 
+.imgStyle {
+  transition: transform 0.3s ease-in-out;
+}
+
+.imgStyle:hover {
+  transform: scale(1.1);
+}
+
 @media (max-width: 399px) {
   .cardConatiner {
     border: 2px solid #a19f9d;
