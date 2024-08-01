@@ -1,5 +1,6 @@
 import Image from "next/image";
 import classes from "./MovieTvShow.module.css";
+import Link from "next/link";
 
 const MovieTvShow = (props) => {
   return (
@@ -33,9 +34,11 @@ const MovieTvShow = (props) => {
           }}
         >
           <div>
-            <h3 className={classes.h1} style={{ fontWeight: "bold" }}>
-              {props.title}
-            </h3>
+            <Link href="/movies/result">
+              <h3 className={classes.h1} style={{ fontWeight: "bold" }}>
+                {props.title}
+              </h3>
+            </Link>
             <p className={classes.h2}>{props.description}</p>
           </div>
           <div>

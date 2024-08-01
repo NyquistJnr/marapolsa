@@ -1,0 +1,39 @@
+.imgStyle {
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+  .imgStyle1 {
+    width: 80%;
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 767px) {
+  .imgStyle1 {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .imgStyle1 {
+    width: 40%;
+    height: 400px;
+    margin-right: 20px;
+  }
+}
+
+@media (min-width: 992px) {
+  .imgStyle1 {
+    width: 45%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .imgStyle1 {
+    width: 40%;
+  }
+}

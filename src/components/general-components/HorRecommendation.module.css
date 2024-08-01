@@ -1,0 +1,8 @@
+.seeMoreLink {
+  font-size: 14px;
+  text-align: right;
+}
+
+.seeMoreLink:hover {
+  color: blue;
+}

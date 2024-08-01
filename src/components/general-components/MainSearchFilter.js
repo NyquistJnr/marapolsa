@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { FiSearch } from "react-icons/fi";
-import styles from "./SearchFilter.module.css";
+import styles from "./MainSearchFilter.module.css";
 
 const MainSearchFilterBar = (props) => {
   const searchRef = useRef();

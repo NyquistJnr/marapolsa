@@ -4,9 +4,9 @@ import { useRef, useState } from "react";
 import { Container, Row, Col, Form, Button, Dropdown } from "react-bootstrap";
 import { FiSearch } from "react-icons/fi";
 import { CgSortAz } from "react-icons/cg";
-import styles from "./SearchFilterBar.module.css";
+import styles from ".//CompleteSearchFilter.module.css";
 
-const SearchFilterBar = (props) => {
+const CompleteSearchFilterBar = (props) => {
   const [showFilters, setShowFilters] = useState(false);
   const searchRef = useRef();
 
@@ -31,7 +31,7 @@ const SearchFilterBar = (props) => {
     <main className={styles.searchFilterContainer}>
       <Container>
         <Row className="align-items-center">
-          <Col xs={12} md={7} className="d-flex">
+          <Col xs={12} md={10} lg={9} className="d-flex">
             <div
               style={{
                 border: "1.3px solid #ccc",
@@ -51,7 +51,9 @@ const SearchFilterBar = (props) => {
                 />
                 <Form.Control
                   type="search"
-                  placeholder="Search all reviews"
+                  placeholder={`Search all ${
+                    props.placeholder ? props.placeholder : "reviews"
+                  }`}
                   className={styles.searchInput}
                   ref={searchRef}
                 />
@@ -64,7 +66,12 @@ const SearchFilterBar = (props) => {
               </Form>
             </div>
           </Col>
-          <Col xs={12} md={5} className="text-md-end text-end mt-3 mt-md-0">
+          <Col
+            xs={12}
+            md={2}
+            lg={3}
+            className="text-md-end text-end mt-3 mt-md-0"
+          >
             <Button
               className={styles.filterButtonIcon}
               onClick={handleFilterToggle}
@@ -230,4 +237,4 @@ const SearchFilterBar = (props) => {
   );
 };
 
-export default SearchFilterBar;
+export default CompleteSearchFilterBar;

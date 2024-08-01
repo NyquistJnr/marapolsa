@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 
-import SearchFilterBar from "./SearchFilterBar";
 import SearchedReview from "./SearchedReview";
 import HorRecommendation from "@/components/general-components/HorRecommendation";
 
 import classes from "./MainComponent.module.css";
+import CompleteSearchFilterBar from "@/components/general-components/CompleteSearchFilter";
 
 const ReviewComponent = () => {
   const [sumbitSearch, setSumbitSearch] = useState("");
@@ -18,7 +18,7 @@ const ReviewComponent = () => {
   };
   return (
     <>
-      <SearchFilterBar searchedSection={(e) => handleSearchFilter(e)} />
+      <CompleteSearchFilterBar searchedSection={(e) => handleSearchFilter(e)} />
       {!!!sumbitSearch ? (
         <>
           <div style={{ marginBottom: 50 }}>

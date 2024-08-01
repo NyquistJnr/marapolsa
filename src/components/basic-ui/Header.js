@@ -185,7 +185,9 @@ const Header = () => {
                   as={Link}
                   href="/movies"
                   className={
-                    currentPath === "/movies"
+                    currentPath === "/movies" ||
+                    currentPath === "/movies/list" ||
+                    currentPath === "/movies/result"
                       ? `${classes.activeLink} ${classes.links}`
                       : `${classes.notActiveLink} ${classes.links}`
                   }

@@ -11,6 +11,7 @@ import padlock from "../../../../public/images/icons/password.svg";
 
 import classes from "./SignUp.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 const SignUp = (props) => {
   const { colorMode } = useColorMode();
@@ -190,7 +191,8 @@ const SignUp = (props) => {
           <div
             style={{
               marginTop: -15,
-            }}>
+            }}
+          >
             <Form.Text style={{ color: colorMode === "dark" ? "white" : "" }}>
               Create a strong password with at least 8 characters, including one
               uppercase letter, one number, and one special character.
@@ -238,7 +240,9 @@ const SignUp = (props) => {
           />
           <p>
             I’m at least 16 years old and accept the{" "}
-            <b>Terms and Conditions.</b>
+            <Link href="/terms-and-conditions">
+              <b>Terms and Conditions.</b>
+            </Link>
           </p>
         </div>
         <div style={{ display: "flex" }}>
@@ -250,8 +254,12 @@ const SignUp = (props) => {
             onChange={(e) => handleCheckboxChange(e, "checkbox2")}
           />
           <p>
-            I accept the <b>Privacy Policy</b> and consent to the processing of
-            my personal information in accordance with it.
+            I accept the{" "}
+            <Link href="/privacy-policy">
+              <b>Privacy Policy</b>
+            </Link>{" "}
+            and consent to the processing of my personal information in
+            accordance with it.
           </p>
         </div>
         <Button
@@ -272,7 +280,8 @@ const SignUp = (props) => {
             height: 55,
             color: colorMode === "dark" ? "#555" : "",
           }}
-          disabled={!isFormValid}>
+          disabled={!isFormValid}
+        >
           Sign Up
         </Button>
       </Form>

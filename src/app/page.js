@@ -126,7 +126,7 @@ const data3 = [
   },
 ];
 
-const data4 = [
+export const data4 = [
   {
     src: movieTvShowImg1,
     title: "Beast of Two Worlds",
@@ -200,7 +200,8 @@ export default function Home() {
               justifyContent: "space-between",
               alignItems: "center",
               margin: "30px 0",
-            }}>
+            }}
+          >
             <h4 style={{ fontWeight: "bold" }}>Reviews You Might Like</h4>
             <p>See more</p>
           </div>

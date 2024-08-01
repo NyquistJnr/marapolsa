@@ -17,6 +17,7 @@ import icon2 from "../../../public/images/icons/instagram.svg";
 import icon3 from "../../../public/images/icons/tiktok.svg";
 import icon4 from "../../../public/images/icons/youtube.svg";
 import icon5 from "../../../public/images/icons/facebook.svg";
+import Link from "next/link";
 
 const Footer = () => {
   const [year, setYear] = React.useState("");
@@ -193,15 +194,17 @@ const Footer = () => {
                 marginTop: 30,
               }}
             >
-              <p className="col-6 col-md-6 col-lg-3 text-center">Contact Us</p>
               <p className="col-6 col-md-6 col-lg-3 text-center">
-                Advertise with us
+                <Link href="mailto:info@marapolsa.com">Contact Us</Link>
               </p>
               <p className="col-6 col-md-6 col-lg-3 text-center">
-                Privacy Policy
+                <Link href="/advertise-with-us"> Advertise with us</Link>
               </p>
               <p className="col-6 col-md-6 col-lg-3 text-center">
-                Terms & Conditions
+                <Link href="/privacy-policy">Privacy Policy</Link>
+              </p>
+              <p className="col-6 col-md-6 col-lg-3 text-center">
+                <Link href="/terms-and-conditions">Terms & Conditions</Link>
               </p>
             </div>
           </div>

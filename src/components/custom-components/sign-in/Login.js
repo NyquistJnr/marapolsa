@@ -170,7 +170,8 @@ const Login = (props) => {
             marginTop: 30,
             height: 55,
           }}
-          disabled={!isFormValid}>
+          disabled={!isFormValid}
+        >
           Sign In
         </Button>
       </Form>
