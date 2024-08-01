@@ -45,7 +45,9 @@ const MainSearchFilterBar = (props) => {
                 />
                 <Form.Control
                   type="search"
-                  placeholder="Search all news"
+                  placeholder={`Search all ${
+                    props.placeholder ? props.placeholder : "news"
+                  }`}
                   className={styles.searchInput}
                   ref={searchRef}
                 />

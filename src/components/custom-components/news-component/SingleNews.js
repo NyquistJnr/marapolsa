@@ -8,6 +8,7 @@ import classes from "./SingleNews.module.css";
 
 import TrendingNews, { trendingNewsData } from "./TrendingNews";
 import CommentShare from "@/components/general-components/CommentShare";
+import MainSearchFilterBar from "@/components/general-components/MainSearchFilter";
 
 const SingleNews = (props) => {
   const searchParams = useSearchParams();
@@ -28,6 +29,7 @@ const SingleNews = (props) => {
   // const { trendingNews } = router.query;
   return (
     <Container>
+      <MainSearchFilterBar />
       <h2 style={{ fontWeight: "bold", marginBottom: 20 }}>
         {singleNews.title}
       </h2>
