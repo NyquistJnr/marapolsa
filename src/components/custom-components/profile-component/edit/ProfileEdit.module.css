@@ -1,0 +1,44 @@
+.imgStyle {
+  width: 160px;
+  margin: 16px 0;
+}
+
+.imgStyle:hover {
+  opacity: 0.5;
+}
+
+.changePasswordBtn {
+  background-color: transparent;
+  border: 1px solid #e86c44;
+  color: #e86c44;
+  height: 45px;
+}
+
+.changePasswordBtn:hover,
+.changePasswordBtn:active {
+  background-color: #e86c44 !important;
+  border: 1px solid #e86c44 !important;
+  color: #fff !important;
+}
+
+.saveChangesBtn {
+  background-color: #e86c44;
+  border: 1px solid #e86c44;
+  color: #fff;
+  height: 50px;
+}
+
+.saveChangesBtn:hover,
+.saveChangesBtn:active {
+  background-color: transparent !important;
+  border: 1px solid #e86c44 !important;
+  color: #e86c44 !important;
+  height: 50px;
+}
+
+.saveChangesBtn:disabled {
+  background-color: #d86843;
+  border: 1px solid #e86c44;
+  color: #fff;
+  height: 50px;
+}

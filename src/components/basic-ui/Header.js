@@ -43,7 +43,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
-const isLoggedIn = false;
+const isLoggedIn = true;
 
 // Modal to Pop Sign In or Sign Up
 export const BackdropSignUpLogIn = (props) => {
@@ -262,7 +262,9 @@ const Header = () => {
                     </MenuButton>
                     <MenuList>
                       <MenuGroup title="Profile">
-                        <MenuItem>My Account</MenuItem>
+                        <MenuItem>
+                          <Link href="/profile">My Account</Link>
+                        </MenuItem>
                       </MenuGroup>
                       <MenuDivider />
                       <MenuGroup title="">

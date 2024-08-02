@@ -1,0 +1,16 @@
+.imgStyle {
+  width: 150px;
+}
+
+.editBtn {
+  background-color: transparent;
+  color: #e86c44;
+  border: 1px solid #e86c44;
+}
+
+.editBtn:hover,
+.editBtn:active {
+  background-color: #e86c44 !important;
+  color: #fff !important;
+  border: 1px solid #e86c44 !important;
+}
