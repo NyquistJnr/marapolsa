@@ -112,7 +112,7 @@ const Login = (props) => {
 
   return (
     <section style={{ marginBottom: 50 }}>
-      <ToastContainer />
+      {/*<ToastContainer />*/}
       <h3>Welcome back!</h3>
       <p>Sign in to share your views, discover movies and TV shows. </p>
       <Form onSubmit={handleSubmit}>
