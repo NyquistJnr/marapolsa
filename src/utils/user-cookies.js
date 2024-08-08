@@ -25,7 +25,7 @@ export const setUserId = (value) => {
     value,
     httpOnly: true,
     sameSite: "strict",
-    secure: process.env.NODE_ENV !== "development",
+    secure: process.env.NODE_ENV !== "production",
     maxAge: 36000,
   });
 };
@@ -36,7 +36,7 @@ export const setAccessCookies = (value) => {
     value,
     httpOnly: true,
     sameSite: "strict",
-    secure: process.env.NODE_ENV !== "development",
+    secure: process.env.NODE_ENV !== "production",
     maxAge: 36000,
   });
 };
@@ -47,7 +47,7 @@ export const setRefreshCookies = (value) => {
     value,
     httpOnly: true,
     sameSite: "strict",
-    secure: process.env.NODE_ENV !== "development",
+    secure: process.env.NODE_ENV !== "production",
     maxAge: 36000,
   });
 };
