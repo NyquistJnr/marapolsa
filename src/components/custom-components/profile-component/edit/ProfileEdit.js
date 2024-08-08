@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Button, Container } from "react-bootstrap";
 
@@ -9,8 +13,45 @@ import dpIimage from "../../../../../public/images/templates-imgs/dp.png";
 // Icons here
 import emailIcon from "../../../../../public/images/icons/email.svg";
 import userNameIcon from "../../../../../public/images/icons/user-profile.svg";
+import { Skeleton } from "@chakra-ui/react";
+import { useAuth } from "@/context/AuthContext";
 
 const ProfileEdit = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
+
+  const handleUserProfile = async () => {
+    try {
+      const response = await fetch("/api/profile/", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      console.log(data);
+      setName(data?.data?.username);
+      setEmail(data?.data?.email_address);
+    } catch (error) {
+      console.error("Signup failed:", error);
+      // throw error;
+    }
+  };
+
+  useEffect(() => {
+    handleUserProfile();
+  }, [name, email]);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.replace("/");
+      return;
+    }
+  }, [isAuthenticated]);
+
   return (
     <Container>
       <section>
@@ -56,7 +97,13 @@ const ProfileEdit = () => {
                   priority
                   style={{ marginRight: 10 }}
                 />
-                nayazubuko@gmail.com
+                {email ? (
+                  <span>{email}</span>
+                ) : (
+                  <Skeleton width="100%">
+                    <div>contents wrapped</div>
+                  </Skeleton>
+                )}
               </div>
             </div>
           </section>
@@ -77,7 +124,13 @@ const ProfileEdit = () => {
                   priority
                   style={{ marginRight: 10 }}
                 />
-                nayazubuko
+                {name ? (
+                  <span>{name}</span>
+                ) : (
+                  <Skeleton width="100%">
+                    <div>contents wrapped</div>
+                  </Skeleton>
+                )}
               </div>
             </div>
           </section>

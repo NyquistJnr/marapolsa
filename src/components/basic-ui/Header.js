@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -43,9 +43,11 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
-const isLoggedIn = true;
-
 // Modal to Pop Sign In or Sign Up
+
+// From AuthContext API
+import { useAuth } from "@/context/AuthContext";
+
 export const BackdropSignUpLogIn = (props) => {
   const OverlayOne = () => (
     <ModalOverlay
@@ -79,10 +81,16 @@ export const BackdropSignUpLogIn = (props) => {
           <ModalCloseButton />
           <ModalBody>
             {props.showLogin && (
-              <Login handleLoginClick={handleLoginFinalClick} />
+              <Login
+                onClose={props.onClose}
+                handleLoginClick={handleLoginFinalClick}
+              />
             )}
             {props.showSignUp && (
-              <SignUp handleSignUpClick={handleSignUpFinalClick} />
+              <SignUp
+                onClose={props.onClose}
+                handleSignUpClick={handleSignUpFinalClick}
+              />
             )}
           </ModalBody>
         </ModalContent>
@@ -94,6 +102,8 @@ export const BackdropSignUpLogIn = (props) => {
 // NavBar Component
 const expand = "lg";
 const Header = () => {
+  const router = useRouter();
+  const { isAuthenticated, logout, name } = useAuth();
   const currentPath = usePathname();
   // const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -218,7 +228,7 @@ const Header = () => {
                 </Nav.Link>
               </Nav>
               <Nav style={{ marginTop: 10 }}>
-                {!isLoggedIn ? (
+                {!isAuthenticated ? (
                   <>
                     <Button
                       className={classes["sign-in"]}
@@ -257,18 +267,18 @@ const Header = () => {
                           width={30}
                           priority
                         />
-                        <span style={{ marginLeft: 10 }}>nayazubuko</span>
+                        <span style={{ marginLeft: 10 }}>{name}</span>
                       </div>
                     </MenuButton>
                     <MenuList>
                       <MenuGroup title="Profile">
-                        <MenuItem>
-                          <Link href="/profile">My Account</Link>
+                        <MenuItem onClick={() => router.push("/profile")}>
+                          My Account
                         </MenuItem>
                       </MenuGroup>
                       <MenuDivider />
                       <MenuGroup title="">
-                        <MenuItem>Sign Out</MenuItem>
+                        <MenuItem onClick={() => logout()}>Sign Out</MenuItem>
                       </MenuGroup>
                     </MenuList>
                   </Menu>

@@ -4,6 +4,8 @@ import "./globals.css";
 import { CProviders } from "./CProvider";
 import Header from "@/components/basic-ui/Header";
 import Footer from "@/components/basic-ui/Footer";
+import AuthContextProvider from "@/context/AuthContext";
+import "react-toastify/dist/ReactToastify.css";
 
 const plus_jakarta_sans = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
@@ -17,9 +19,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={plus_jakarta_sans.className}>
         <CProviders>
-          <Header />
-          {children}
-          <Footer />
+          <AuthContextProvider>
+            <Header />
+            {children}
+            <Footer />
+          </AuthContextProvider>
         </CProviders>
       </body>
     </html>

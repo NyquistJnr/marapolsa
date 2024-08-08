@@ -7,13 +7,19 @@ import { useColorMode } from "@chakra-ui/react";
 import usePasswordToggle from "../../../hooks/usePasswordToggle";
 
 import emailImg from "../../../../public/images/icons/email.svg";
+import userImg from "../../../../public/images/icons/user-profile.svg";
 import padlock from "../../../../public/images/icons/password.svg";
 
 import classes from "./SignUp.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
+import { toast, ToastContainer } from "react-toastify";
 
 const SignUp = (props) => {
+  const router = useRouter();
+  const { login, headerName } = useAuth();
   const { colorMode } = useColorMode();
   const [
     PasswordInputType,
@@ -23,9 +29,11 @@ const SignUp = (props) => {
   ] = usePasswordToggle();
 
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
+  const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
   const [checkbox1, setCheckbox1] = useState(false);
@@ -42,6 +50,7 @@ const SignUp = (props) => {
   useEffect(() => {
     // Check if all fields are filled, passwords match, and checkboxes are checked
     const isEmailValid = email.trim() !== "";
+    const isUsernameValid = username.trim() !== "";
     const isPasswordValid = password.trim() !== "";
     const isConfirmPasswordValid =
       confirmPassword.trim() !== "" && password === confirmPassword;
@@ -49,6 +58,7 @@ const SignUp = (props) => {
 
     if (
       isEmailValid &&
+      isUsernameValid &&
       isPasswordValid &&
       isConfirmPasswordValid &&
       areCheckboxesChecked
@@ -57,11 +67,14 @@ const SignUp = (props) => {
     } else {
       setIsFormValid(false);
     }
-  }, [email, password, confirmPassword, checkbox1, checkbox2]);
+  }, [email, username, password, confirmPassword, checkbox1, checkbox2]);
 
   const handleBlur = (field) => {
     if (field === "email" && email.trim() === "") {
       setEmailError(true);
+    }
+    if (field === "username" && username.trim() === "") {
+      setUsernameError(true);
     }
     if (field === "password" && password.trim() === "") {
       setPasswordError(true);
@@ -75,6 +88,9 @@ const SignUp = (props) => {
     if (field === "email") {
       setEmailError(false);
     }
+    if (field === "username") {
+      setUsernameError(false);
+    }
     if (field === "password") {
       setPasswordError(false);
     }
@@ -85,6 +101,12 @@ const SignUp = (props) => {
       setEmail(e.target.value);
       if (e.target.value.trim() !== "") {
         setEmailError(false);
+      }
+    }
+    if (field === "username") {
+      setUsername(e.target.value);
+      if (e.target.value.trim() !== "") {
+        setUsernameError(false);
       }
     }
     if (field === "password") {
@@ -117,14 +139,41 @@ const SignUp = (props) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log({ email, password, confirmPassword, checkbox1, checkbox2 });
+    try {
+      const response = await fetch("/api/signup/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username,
+          email_address: email,
+          password,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+      if (response.ok) {
+        login(data.loggedIn);
+        headerName(username);
+        props.onClose();
+      } else {
+        toast.error("Something Went Wrong!", {
+          position: "top-center",
+        });
+      }
+    } catch (error) {
+      console.error("Signup failed:", error);
+      // throw error;
+    }
   };
 
   return (
     <section>
+      <ToastContainer />
       <h3>Join the conversation!</h3>
       <p>Sign up to share your views, discover movies and TV shows. </p>
       <Form onSubmit={handleSubmit}>
@@ -154,6 +203,36 @@ const SignUp = (props) => {
             {emailError && (
               <Form.Text style={{ color: "red", fontSize: 12 }}>
                 Email address cannot be empty.
+              </Form.Text>
+            )}
+          </div>
+        </Form.Group>
+        <Form.Group controlId="formBasicName">
+          <Form.Label>Username</Form.Label>
+          <div className={`${classes["email-parent"]} mb-3`}>
+            <Image
+              src={userImg}
+              className={classes["email-icon"]}
+              priority
+              alt="username icon"
+            />
+            <Form.Control
+              type="text"
+              placeholder="Enter your username"
+              className={classes.inputSpace}
+              style={{
+                height: 50,
+                paddingLeft: 40,
+                borderColor: usernameError ? "red" : "",
+              }}
+              onChange={(e) => handleChange(e, "username")}
+              onBlur={() => handleBlur("username")}
+              onFocus={() => handleFocus("username")}
+              required
+            />
+            {usernameError && (
+              <Form.Text style={{ color: "red", fontSize: 12 }}>
+                Username cannot be empty.
               </Form.Text>
             )}
           </div>

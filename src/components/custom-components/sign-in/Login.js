@@ -12,8 +12,11 @@ import padlock from "../../../../public/images/icons/password.svg";
 
 import classes from "./Login.module.css";
 import Image from "next/image";
+import { useAuth } from "@/context/AuthContext";
+import { toast, ToastContainer } from "react-toastify";
 
 const Login = (props) => {
+  const { login, headerName } = useAuth();
   const [PasswordInputType, ToggleIcon] = usePasswordToggle();
   const { colorMode } = useColorMode();
 
@@ -24,6 +27,7 @@ const Login = (props) => {
   const [isFormValid, setIsFormValid] = useState(false);
 
   const [userClick, setUserClick] = useState(false);
+  const [boxError, setBoxError] = useState(false);
 
   const handelChangeClick = () => {
     setUserClick((prev) => !prev);
@@ -74,18 +78,41 @@ const Login = (props) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Additional submit logic
 
-    console.log({ email, password });
-
-    setEmail("");
-    setPassword("");
+    try {
+      const response = await fetch("/api/login/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email_address: email,
+          password,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+      if (response.ok) {
+        login(data.loggedIn);
+        headerName("Loading...");
+        props.onClose();
+      } else {
+        toast.error("Wrong credentials!", {
+          position: "top-center",
+        });
+      }
+    } catch (error) {
+      console.error("Signup failed:", error);
+      // throw error;
+    }
   };
 
   return (
     <section style={{ marginBottom: 50 }}>
+      <ToastContainer />
       <h3>Welcome back!</h3>
       <p>Sign in to share your views, discover movies and TV shows. </p>
       <Form onSubmit={handleSubmit}>
