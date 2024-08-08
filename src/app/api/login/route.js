@@ -11,38 +11,48 @@ import {
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-  const data = await request.json();
-  // const { username, email_address, password } = data;
-  const accessToken = getAccessCookies();
-  const refreshToken = getRefreshCookies();
+  try {
+    const data = await request.json();
+    const { email_address, password } = data;
 
-  console.log(accessToken);
+    if (!email_address || !password) {
+      return NextResponse.json(
+        { message: "Email and password are required", loggedIn: "0" },
+        { status: 400 }
+      );
+    }
 
-  const response = await fetch(`${BASE_API_URL}/login/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${accessToken}`,
-    },
-    body: JSON.stringify(data),
-  });
+    const response = await fetch(`${BASE_API_URL}/login/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
 
-  const jsonData = await response.json();
-  console.log(jsonData);
-  const { id, access, refresh } = jsonData;
+    const jsonData = await response.json();
+    console.log("jsonData", jsonData);
 
-  if (response.ok) {
-    setUserId(id);
-    setAccessCookies(access);
-    setRefreshCookies(refresh);
+    if (response.ok) {
+      const { id, access, refresh, username } = jsonData;
+      setUserId(id);
+      setAccessCookies(access);
+      setRefreshCookies(refresh);
+      return NextResponse.json(
+        { message: "User Login Successfully!", loggedIn: "1", username },
+        { status: 200 }
+      );
+    }
+
     return NextResponse.json(
-      { message: "User Login Successfully!", loggedIn: "1" },
-      { status: 200 }
+      { message: "Incorrect Email or Password", loggedIn: "0" },
+      { status: 401 }
+    );
+  } catch (error) {
+    console.error("Error during login:", error);
+    return NextResponse.json(
+      { message: "Server error occurred during login!", loggedIn: "0" },
+      { status: 500 }
     );
   }
-
-  return NextResponse.json(
-    { message: "Incorrect Email or Password", loggedIn: "0" },
-    { status: 401 }
-  );
 }

@@ -53,5 +53,7 @@ export const setRefreshCookies = (value) => {
 };
 
 export const deleteUserId = () => {
+  cookies().delete(ACCESS_TOKEN_COOKIES);
+  cookies().delete(REFRESH_TOKEN_COOKIES);
   return cookies().delete(USER_ID);
 };

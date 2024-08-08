@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useRef } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useColorMode } from "@chakra-ui/react";
@@ -20,67 +20,30 @@ const Login = (props) => {
   const [PasswordInputType, ToggleIcon] = usePasswordToggle();
   const { colorMode } = useColorMode();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-  const [isFormValid, setIsFormValid] = useState(false);
-
-  const [userClick, setUserClick] = useState(false);
-  const [boxError, setBoxError] = useState(false);
 
   const handelChangeClick = () => {
-    setUserClick((prev) => !prev);
-    props.handleLoginClick(userClick);
+    props.handleLoginClick((prev) => !prev);
   };
 
-  // console.log(userClick);
+  const validateForm = () => {
+    const isEmailValid = emailRef.current.value.trim() !== "";
+    const isPasswordValid = passwordRef.current.value.trim() !== "";
 
-  useEffect(() => {
-    // Check if both fields are filled
-    if (email.trim() !== "" && password.trim() !== "") {
-      setIsFormValid(true);
-    } else {
-      setIsFormValid(false);
-    }
-  }, [email, password]);
+    setEmailError(!isEmailValid);
+    setPasswordError(!isPasswordValid);
 
-  const handleBlur = (field) => {
-    if (field === "email" && email.trim() === "") {
-      setEmailError(true);
-    }
-    if (field === "password" && password.trim() === "") {
-      setPasswordError(true);
-    }
-  };
-
-  const handleFocus = (field) => {
-    if (field === "email") {
-      setEmailError(false);
-    }
-    if (field === "password") {
-      setPasswordError(false);
-    }
-  };
-
-  const handleChange = (e, field) => {
-    if (field === "email") {
-      setEmail(e.target.value);
-      if (e.target.value.trim() !== "") {
-        setEmailError(false);
-      }
-    }
-    if (field === "password") {
-      setPassword(e.target.value);
-      if (e.target.value.trim() !== "") {
-        setPasswordError(false);
-      }
-    }
+    return isEmailValid && isPasswordValid;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Additional submit logic
+
+    if (!validateForm()) return;
 
     try {
       const response = await fetch("/api/login/", {
@@ -89,15 +52,14 @@ const Login = (props) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email_address: email,
-          password,
+          email_address: emailRef.current.value,
+          password: passwordRef.current.value,
         }),
       });
       const data = await response.json();
-      console.log(data);
       if (response.ok) {
         login(data.loggedIn);
-        headerName("Loading...");
+        headerName(data?.username);
         props.onClose();
       } else {
         toast.error("Wrong credentials!", {
@@ -105,14 +67,15 @@ const Login = (props) => {
         });
       }
     } catch (error) {
-      console.error("Signup failed:", error);
-      // throw error;
+      console.error("Login failed:", error);
     }
   };
 
+  // console.log("Login");
+
   return (
     <section style={{ marginBottom: 50 }}>
-      {/*<ToastContainer />*/}
+      <ToastContainer />
       <h3>Welcome back!</h3>
       <p>Sign in to share your views, discover movies and TV shows. </p>
       <Form onSubmit={handleSubmit}>
@@ -126,6 +89,7 @@ const Login = (props) => {
               alt="email Icon"
             />
             <Form.Control
+              ref={emailRef}
               type="email"
               placeholder="Enter your email address"
               className={classes.inputSpace}
@@ -135,10 +99,6 @@ const Login = (props) => {
                 borderColor: emailError ? "red" : "",
               }}
               required
-              value={email}
-              onChange={(e) => handleChange(e, "email")}
-              onBlur={() => handleBlur("email")}
-              onFocus={() => handleFocus("email")}
             />
             {emailError && (
               <Form.Text style={{ color: "red", fontSize: 12 }}>
@@ -159,6 +119,7 @@ const Login = (props) => {
             />
             <span className={classes["pass-icon"]}>{ToggleIcon}</span>
             <Form.Control
+              ref={passwordRef}
               type={PasswordInputType}
               placeholder="Enter your password"
               className={`${classes.inputSpace} ${classes.inputSpace1}`}
@@ -169,10 +130,6 @@ const Login = (props) => {
                 borderColor: passwordError ? "red" : "",
               }}
               required
-              value={password}
-              onChange={(e) => handleChange(e, "password")}
-              onBlur={() => handleBlur("password")}
-              onFocus={() => handleFocus("password")}
             />
             {passwordError && (
               <Form.Text style={{ color: "red", fontSize: 12 }}>
@@ -192,12 +149,11 @@ const Login = (props) => {
           type="submit"
           style={{
             width: "100%",
-            background: isFormValid ? "#E86C44" : "#F9DCD2",
+            background: "#E86C44",
             border: "none",
             marginTop: 30,
             height: 55,
           }}
-          disabled={!isFormValid}
         >
           Sign In
         </Button>

@@ -50,6 +50,8 @@ const MainProfile = () => {
     }
   }, [isAuthenticated]);
 
+  console.log("Main Profile");
+
   return (
     <Container>
       <section

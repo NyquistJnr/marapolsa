@@ -9,35 +9,54 @@ import {
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-  const data = await request.json();
-  // const { username, email_address, password } = data;
+  try {
+    const data = await request.json();
+    const { username, email_address, password } = data;
 
-  const response = await fetch(`${BASE_API_URL}/register/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+    if (!username || !email_address || !password) {
+      return NextResponse.json(
+        {
+          message: "Username, email, and password are required",
+          loggedIn: "0",
+        },
+        { status: 400 }
+      );
+    }
 
-  const jsonData = await response.json();
-  const { id, access, refresh } = jsonData;
+    const response = await fetch(`${BASE_API_URL}/register/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
 
-  console.log(access);
-  console.log(id);
+    const jsonData = await response.json();
+    console.log("jsonData", jsonData);
 
-  if (response.ok) {
-    setUserId(id);
-    setAccessCookies(access);
-    setRefreshCookies(refresh);
+    if (response.ok) {
+      const { id, access, refresh } = jsonData;
+      setUserId(id);
+      setAccessCookies(access);
+      setRefreshCookies(refresh);
+      return NextResponse.json(
+        { message: "User Created Successfully!", loggedIn: "1" },
+        { status: 200 }
+      );
+    }
+
     return NextResponse.json(
-      { message: "User Created Successfully!", loggedIn: "1" },
-      { status: 200 }
+      {
+        message: "Error creating user. Please check your input.",
+        loggedIn: "0",
+      },
+      { status: response.status }
+    );
+  } catch (error) {
+    console.error("Error during user registration:", error);
+    return NextResponse.json(
+      { message: "Server error occurred during registration!", loggedIn: "0" },
+      { status: 500 }
     );
   }
-
-  return NextResponse.json(
-    { message: "Error with creating the user!", loggedIn: "0" },
-    { status: 401 }
-  );
 }

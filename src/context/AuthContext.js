@@ -14,6 +14,8 @@ const AuthContextProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [name, setName] = useState("");
 
+  // console.log("Outside Auth Context");
+
   const handleLogout = async () => {
     const response = await fetch("/api/logout", {
       method: "POST",
@@ -32,6 +34,8 @@ const AuthContextProvider = ({ children }) => {
     if (nameMain) {
       setName(nameMain);
     }
+
+    // console.log("In useffect authcontext");
   }, [isAuthenticated, name]);
 
   const login = (isAuth) => {

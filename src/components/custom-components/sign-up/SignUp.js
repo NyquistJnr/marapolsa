@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useColorMode } from "@chakra-ui/react";
 
@@ -28,119 +28,54 @@ const SignUp = (props) => {
     ToggleIconConfirm,
   ] = usePasswordToggle();
 
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const emailRef = useRef();
+  const usernameRef = useRef();
+  const passwordRef = useRef();
+  const confirmPasswordRef = useRef();
+  const checkbox1Ref = useRef();
+  const checkbox2Ref = useRef();
+
   const [emailError, setEmailError] = useState(false);
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
-  const [checkbox1, setCheckbox1] = useState(false);
-  const [checkbox2, setCheckbox2] = useState(false);
-  const [isFormValid, setIsFormValid] = useState(false);
-
-  const [userClick, setUserClick] = useState(false);
+  const [checkbox1Error, setCheckbox1Error] = useState(false);
+  const [checkbox2Error, setCheckbox2Error] = useState(false);
 
   const handleChangeClick = () => {
-    setUserClick((prev) => !prev);
-    props.handleSignUpClick(userClick);
+    props.handleSignUpClick((prev) => !prev);
   };
 
-  useEffect(() => {
-    // Check if all fields are filled, passwords match, and checkboxes are checked
-    const isEmailValid = email.trim() !== "";
-    const isUsernameValid = username.trim() !== "";
-    const isPasswordValid = password.trim() !== "";
+  const validateForm = () => {
+    const isEmailValid = emailRef.current.value.trim() !== "";
+    const isUsernameValid = usernameRef.current.value.trim() !== "";
+    const isPasswordValid = passwordRef.current.value.trim() !== "";
     const isConfirmPasswordValid =
-      confirmPassword.trim() !== "" && password === confirmPassword;
-    const areCheckboxesChecked = checkbox1 && checkbox2;
+      confirmPasswordRef.current.value.trim() !== "" &&
+      confirmPasswordRef.current.value === passwordRef.current.value;
+    const areCheckboxesChecked =
+      checkbox1Ref.current.checked && checkbox2Ref.current.checked;
 
-    if (
+    setEmailError(!isEmailValid);
+    setUsernameError(!isUsernameValid);
+    setPasswordError(!isPasswordValid);
+    setConfirmPasswordError(!isConfirmPasswordValid);
+    setCheckbox1Error(!checkbox1Ref.current.checked);
+    setCheckbox2Error(!checkbox2Ref.current.checked);
+
+    return (
       isEmailValid &&
       isUsernameValid &&
       isPasswordValid &&
       isConfirmPasswordValid &&
       areCheckboxesChecked
-    ) {
-      setIsFormValid(true);
-    } else {
-      setIsFormValid(false);
-    }
-  }, [email, username, password, confirmPassword, checkbox1, checkbox2]);
-
-  const handleBlur = (field) => {
-    if (field === "email" && email.trim() === "") {
-      setEmailError(true);
-    }
-    if (field === "username" && username.trim() === "") {
-      setUsernameError(true);
-    }
-    if (field === "password" && password.trim() === "") {
-      setPasswordError(true);
-    }
-    if (field === "confirmPassword" && confirmPassword.trim() === "") {
-      setConfirmPasswordError(true);
-    }
-  };
-
-  const handleFocus = (field) => {
-    if (field === "email") {
-      setEmailError(false);
-    }
-    if (field === "username") {
-      setUsernameError(false);
-    }
-    if (field === "password") {
-      setPasswordError(false);
-    }
-  };
-
-  const handleChange = (e, field) => {
-    if (field === "email") {
-      setEmail(e.target.value);
-      if (e.target.value.trim() !== "") {
-        setEmailError(false);
-      }
-    }
-    if (field === "username") {
-      setUsername(e.target.value);
-      if (e.target.value.trim() !== "") {
-        setUsernameError(false);
-      }
-    }
-    if (field === "password") {
-      setPassword(e.target.value);
-      if (e.target.value.trim() !== "") {
-        setPasswordError(false);
-      }
-      if (confirmPassword !== e.target.value) {
-        setConfirmPasswordError(true);
-      } else {
-        setConfirmPasswordError(false);
-      }
-    }
-    if (field === "confirmPassword") {
-      setConfirmPassword(e.target.value);
-      if (e.target.value.trim() !== "" && e.target.value === password) {
-        setConfirmPasswordError(false);
-      } else {
-        setConfirmPasswordError(true);
-      }
-    }
-  };
-
-  const handleCheckboxChange = (e, checkbox) => {
-    if (checkbox === "checkbox1") {
-      setCheckbox1(e.target.checked);
-    }
-    if (checkbox === "checkbox2") {
-      setCheckbox2(e.target.checked);
-    }
+    );
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) return;
 
     try {
       const response = await fetch("/api/signup/", {
@@ -149,33 +84,33 @@ const SignUp = (props) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username,
-          email_address: email,
-          password,
+          username: usernameRef.current.value,
+          email_address: emailRef.current.value,
+          password: passwordRef.current.value,
         }),
       });
       const data = await response.json();
-      console.log(data);
       if (response.ok) {
         login(data.loggedIn);
-        headerName(username);
+        headerName(usernameRef.current.value);
         props.onClose();
       } else {
-        toast.error("Something Went Wrong!", {
+        toast.error("Something Went Wrong! Try another email or username", {
           position: "top-center",
         });
       }
     } catch (error) {
       console.error("Signup failed:", error);
-      // throw error;
     }
   };
+
+  // console.log("SignUp");
 
   return (
     <section>
       <ToastContainer />
       <h3>Join the conversation!</h3>
-      <p>Sign up to share your views, discover movies and TV shows. </p>
+      <p>Sign up to share your views, discover movies and TV shows.</p>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -187,6 +122,7 @@ const SignUp = (props) => {
               alt="email icon"
             />
             <Form.Control
+              ref={emailRef}
               type="email"
               placeholder="Enter your email address"
               className={classes.inputSpace}
@@ -195,9 +131,6 @@ const SignUp = (props) => {
                 paddingLeft: 40,
                 borderColor: emailError ? "red" : "",
               }}
-              onChange={(e) => handleChange(e, "email")}
-              onBlur={() => handleBlur("email")}
-              onFocus={() => handleFocus("email")}
               required
             />
             {emailError && (
@@ -217,6 +150,7 @@ const SignUp = (props) => {
               alt="username icon"
             />
             <Form.Control
+              ref={usernameRef}
               type="text"
               placeholder="Enter your username"
               className={classes.inputSpace}
@@ -225,9 +159,6 @@ const SignUp = (props) => {
                 paddingLeft: 40,
                 borderColor: usernameError ? "red" : "",
               }}
-              onChange={(e) => handleChange(e, "username")}
-              onBlur={() => handleBlur("username")}
-              onFocus={() => handleFocus("username")}
               required
             />
             {usernameError && (
@@ -248,6 +179,7 @@ const SignUp = (props) => {
             />
             <span className={classes["pass-icon"]}>{ToggleIcon}</span>
             <Form.Control
+              ref={passwordRef}
               type={PasswordInputType}
               placeholder="Enter your password"
               className={`${classes.inputSpace} ${classes.inputSpace1}`}
@@ -257,25 +189,13 @@ const SignUp = (props) => {
                 paddingLeft: 40,
                 borderColor: passwordError ? "red" : "",
               }}
-              onChange={(e) => handleChange(e, "password")}
-              onBlur={() => handleBlur("password")}
-              onFocus={() => handleFocus("password")}
+              required
             />
             {passwordError && (
               <Form.Text style={{ color: "red", fontSize: 12 }}>
                 Password cannot be empty.
               </Form.Text>
             )}
-          </div>
-          <div
-            style={{
-              marginTop: -15,
-            }}
-          >
-            <Form.Text style={{ color: colorMode === "dark" ? "white" : "" }}>
-              Create a strong password with at least 8 characters, including one
-              uppercase letter, one number, and one special character.
-            </Form.Text>
           </div>
         </Form.Group>
         <Form.Group controlId="formBasicPassword1" style={{ marginTop: 20 }}>
@@ -289,6 +209,7 @@ const SignUp = (props) => {
             />
             <span className={classes["pass-icon"]}>{ToggleIconConfirm}</span>
             <Form.Control
+              ref={confirmPasswordRef}
               type={PasswordInputTypeConfirm}
               placeholder="Re-enter your password"
               className={`${classes.inputSpace} ${classes.inputSpace1}`}
@@ -298,24 +219,22 @@ const SignUp = (props) => {
                 paddingLeft: 40,
                 borderColor: confirmPasswordError ? "red" : "",
               }}
-              onChange={(e) => handleChange(e, "confirmPassword")}
-              onBlur={() => handleBlur("confirmPassword")}
-              onFocus={() => handleFocus("confirmPassword")}
+              required
             />
             {confirmPasswordError && (
               <Form.Text style={{ color: "red", fontSize: 12 }}>
-                The password isn&apos;t the same
+                The password isn&apos;t the same.
               </Form.Text>
             )}
           </div>
         </Form.Group>
         <div style={{ display: "flex" }}>
           <Form.Check
+            ref={checkbox1Ref}
             type="checkbox"
             id="default-checkbox"
             style={{ marginRight: 10 }}
-            checked={checkbox1}
-            onChange={(e) => handleCheckboxChange(e, "checkbox1")}
+            required
           />
           <p>
             I’m at least 16 years old and accept the{" "}
@@ -323,14 +242,19 @@ const SignUp = (props) => {
               <b>Terms and Conditions.</b>
             </Link>
           </p>
+          {checkbox1Error && (
+            <Form.Text style={{ color: "red", fontSize: 12 }}>
+              This field is required.
+            </Form.Text>
+          )}
         </div>
         <div style={{ display: "flex" }}>
           <Form.Check
+            ref={checkbox2Ref}
             type="checkbox"
             id="default-checkbox1"
             style={{ marginRight: 10 }}
-            checked={checkbox2}
-            onChange={(e) => handleCheckboxChange(e, "checkbox2")}
+            required
           />
           <p>
             I accept the{" "}
@@ -340,26 +264,23 @@ const SignUp = (props) => {
             and consent to the processing of my personal information in
             accordance with it.
           </p>
+          {checkbox2Error && (
+            <Form.Text style={{ color: "red", fontSize: 12 }}>
+              This field is required.
+            </Form.Text>
+          )}
         </div>
         <Button
           variant="primary"
           type="submit"
           style={{
             width: "100%",
-            background:
-              colorMode === "light"
-                ? isFormValid
-                  ? "#E86C44"
-                  : "#F9DCD2"
-                : isFormValid
-                ? "#fff"
-                : "#ccc",
+            background: "#E86C44",
             border: "none",
             marginTop: 30,
             height: 55,
-            color: colorMode === "dark" ? "#555" : "",
+            color: colorMode === "dark" ? "#555" : "#fff",
           }}
-          disabled={!isFormValid}
         >
           Sign Up
         </Button>
