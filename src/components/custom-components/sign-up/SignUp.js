@@ -42,6 +42,8 @@ const SignUp = () => {
   const [checkbox1Error, setCheckbox1Error] = useState(false);
   const [checkbox2Error, setCheckbox2Error] = useState(false);
 
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+
   const validateForm = () => {
     const isEmailValid = emailRef.current.value.trim() !== "";
     const isUsernameValid = usernameRef.current.value.trim() !== "";
@@ -73,6 +75,8 @@ const SignUp = () => {
 
     if (!validateForm()) return;
 
+    setIsButtonClicked(true);
+
     try {
       const response = await fetch("/api/signup/", {
         method: "POST",
@@ -89,14 +93,25 @@ const SignUp = () => {
       if (response.ok) {
         login(data.loggedIn);
         headerName(usernameRef.current.value);
-        router.push("/profile");
+        console.log(data);
+        toast.success("Your account was created successfully!", {
+          position: "top-center",
+        });
+        setIsButtonClicked("Redirecting...");
+        setTimeout(() => {
+          router.push("/profile");
+          // console.log("Moving");
+        }, 5000);
       } else {
         toast.error("Something Went Wrong! Try another email or username", {
           position: "top-center",
         });
+        console.log(data);
+        setIsButtonClicked(false);
       }
     } catch (error) {
       console.error("Signup failed:", error);
+      setIsButtonClicked(false);
     }
   };
 
@@ -293,8 +308,13 @@ const SignUp = () => {
                     height: 55,
                     color: colorMode === "dark" ? "#555" : "#fff",
                   }}
+                  disabled={isButtonClicked}
                 >
-                  Sign Up
+                  {!isButtonClicked
+                    ? "Sign Up"
+                    : isButtonClicked === "Redirecting..."
+                    ? "Redirecting..."
+                    : "Submitting"}
                 </Button>
               </Form>
               <div>

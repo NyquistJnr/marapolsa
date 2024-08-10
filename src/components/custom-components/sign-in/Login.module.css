@@ -39,6 +39,8 @@
 .inputSpace:focus,
 .inputSpace:active {
   background-color: transparent !important;
+  box-shadow: none;
+  border-color: #e86c44;
 }
 
 .backGroundImage {

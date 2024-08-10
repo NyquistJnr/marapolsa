@@ -19,6 +19,7 @@ const MainProfile = () => {
   const { headerName, isAuthenticated } = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [dp, setDP] = useState("");
 
   const handleUserProfile = async () => {
     try {
@@ -33,6 +34,7 @@ const MainProfile = () => {
       headerName(data?.data?.username);
       setName(data?.data?.username);
       setEmail(data?.data?.email_address);
+      setDP(data?.data?.profile_picture);
     } catch (error) {
       console.error("Signup failed:", error);
       // throw error;
@@ -73,9 +75,8 @@ const MainProfile = () => {
           {name ? (
             <>
               <Image
-                src={img1}
-                // src="/hello.png"
-                alt="DP Image"
+                src={dp ? `https://marapolsamovies.onrender.com${dp}` : img1}
+                alt={`${name} Image`}
                 className={classes.imgStyle}
                 // priority
                 width={200}

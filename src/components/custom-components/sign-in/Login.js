@@ -30,6 +30,8 @@ const Login = () => {
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
 
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+
   const validateForm = () => {
     const isEmailValid = emailRef.current.value.trim() !== "";
     const isPasswordValid = passwordRef.current.value.trim() !== "";
@@ -44,6 +46,8 @@ const Login = () => {
     e.preventDefault();
 
     if (!validateForm()) return;
+
+    setIsButtonClicked(true);
 
     try {
       const response = await fetch("/api/login/", {
@@ -60,14 +64,25 @@ const Login = () => {
       if (response.ok) {
         login(data.loggedIn);
         headerName(data?.username);
-        router.push("/profile");
+        console.log(data);
+        toast.success("Login was successful!", {
+          position: "top-center",
+        });
+        setIsButtonClicked("Redirecting...");
+        setTimeout(() => {
+          router.push("/profile");
+          // console.log("Moving");
+        }, 5000);
       } else {
         toast.error("Wrong credentials!", {
           position: "top-center",
         });
+        console.log("Error from Login Component", data);
+        setIsButtonClicked(false);
       }
     } catch (error) {
       console.error("Login failed:", error);
+      setIsButtonClicked(false);
     }
   };
 
@@ -171,8 +186,13 @@ const Login = () => {
                     marginTop: 30,
                     height: 55,
                   }}
+                  disabled={isButtonClicked}
                 >
-                  Sign In
+                  {!isButtonClicked
+                    ? "Login"
+                    : isButtonClicked === "Redirecting..."
+                    ? "Redirecting..."
+                    : "Submitting"}
                 </Button>
               </Form>
               <div>

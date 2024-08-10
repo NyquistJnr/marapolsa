@@ -42,3 +42,14 @@
   color: #fff;
   height: 50px;
 }
+
+.genderField {
+  background-color: transparent;
+  border: none;
+}
+
+.genderField:focus {
+  background-color: transparent !important;
+  border: none;
+  box-shadow: none;
+}
