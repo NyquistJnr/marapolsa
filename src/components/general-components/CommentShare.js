@@ -1,9 +1,10 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
 
 import classes from "./CommentShare.module.css";
 
-import { useState } from "react";
+import { useAuth } from "@/context/AuthContext";
 
 import { Container } from "react-bootstrap";
 
@@ -35,8 +36,6 @@ import {
 import CommentBox from "./CommentBox";
 import CommentList from "./CommentList";
 
-const isLoggedIn = false;
-
 const BackdropExample1 = (props) => {
   const OverlayOne = () => (
     <ModalOverlay
@@ -65,6 +64,7 @@ const BackdropExample1 = (props) => {
 };
 
 const CommentShare = (props) => {
+  const { isAuthenticated } = useAuth();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   // Comment Box
@@ -95,7 +95,7 @@ const CommentShare = (props) => {
             width={32}
             style={{ marginRight: 10 }}
             onClick={() => {
-              if (isLoggedIn) {
+              if (isAuthenticated) {
                 setLikedPost((prev) => {
                   // console.log("You liked this post!");
                   return !prev;
@@ -112,7 +112,7 @@ const CommentShare = (props) => {
             width={30}
             style={{ marginRight: 10 }}
             onClick={() => {
-              if (isLoggedIn) {
+              if (isAuthenticated) {
                 setShowCommentBox((prev) => !prev);
               } else {
                 onOpen();
@@ -126,7 +126,7 @@ const CommentShare = (props) => {
             width={30}
             style={{ marginRight: 10 }}
             onClick={() => {
-              if (isLoggedIn) {
+              if (isAuthenticated) {
                 setBookmarkPost((prev) => {
                   // console.log("You're Logged In!");
                   return !prev;

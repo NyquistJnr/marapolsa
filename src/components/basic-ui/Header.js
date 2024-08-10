@@ -34,13 +34,6 @@ import {
   MenuGroup,
   MenuItem,
   MenuList,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-  useDisclosure,
 } from "@chakra-ui/react";
 
 // Modal to Pop Sign In or Sign Up
@@ -48,78 +41,12 @@ import {
 // From AuthContext API
 import { useAuth } from "@/context/AuthContext";
 
-export const BackdropSignUpLogIn = (props) => {
-  const OverlayOne = () => (
-    <ModalOverlay
-      bg="blackAlpha.300"
-      backdropInvert="80%"
-      backdropFilter="blur(5px) hue-rotate(10deg)"
-    />
-  );
-
-  const [overlay, setOverlay] = React.useState(<OverlayOne />);
-
-  const handleLoginFinalClick = (a) => {
-    props.onChangeLoginFinal(a);
-  };
-
-  const handleSignUpFinalClick = (a) => {
-    props.onChangeSignUpFinal(a);
-  };
-
-  return (
-    <>
-      <Modal
-        closeOnOverlayClick={false}
-        isCentered
-        isOpen={props.isOpen}
-        onClose={props.onClose}
-      >
-        {overlay}
-        <ModalContent>
-          <ModalHeader></ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            {props.showLogin && (
-              <Login
-                onClose={props.onClose}
-                handleLoginClick={handleLoginFinalClick}
-              />
-            )}
-            {props.showSignUp && (
-              <SignUp
-                onClose={props.onClose}
-                handleSignUpClick={handleSignUpFinalClick}
-              />
-            )}
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-    </>
-  );
-};
-
 // NavBar Component
 const expand = "lg";
 const Header = () => {
   const router = useRouter();
   const { isAuthenticated, logout, name } = useAuth();
   const currentPath = usePathname();
-  // const { colorMode, toggleColorMode } = useColorMode();
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const [showLogin, setShowLogin] = useState(false);
-  const [showSignUp, setShowSignUp] = useState(false);
-
-  const onChangeLoginFinal = (a) => {
-    setShowLogin(a);
-    setShowSignUp((a) => !a);
-  };
-
-  const onChangeSignUpFinal = (a) => {
-    setShowSignUp(a);
-    setShowLogin((a) => !a);
-  };
 
   return (
     <>
@@ -232,21 +159,13 @@ const Header = () => {
                   <>
                     <Button
                       className={classes["sign-in"]}
-                      onClick={() => {
-                        onOpen();
-                        setShowLogin(true);
-                        setShowSignUp(false);
-                      }}
+                      onClick={() => router.push("/login")}
                     >
                       Sign In
                     </Button>
                     <Button
                       className={classes["sign-up"]}
-                      onClick={() => {
-                        onOpen();
-                        setShowSignUp(true);
-                        setShowLogin(false);
-                      }}
+                      onClick={() => router.push("/sign-up")}
                     >
                       Sign Up
                     </Button>
@@ -288,14 +207,6 @@ const Header = () => {
           </Navbar.Offcanvas>
         </Container>
       </Navbar>
-      <BackdropSignUpLogIn
-        isOpen={isOpen}
-        onClose={onClose}
-        showLogin={showLogin}
-        showSignUp={showSignUp}
-        onChangeLoginFinal={onChangeLoginFinal}
-        onChangeSignUpFinal={onChangeSignUpFinal}
-      />
     </>
   );
 };

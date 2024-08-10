@@ -15,6 +15,8 @@
 
 .inputSpace {
   padding-left: 50px;
+  background-color: transparent;
+  border: 1px solid #888;
 }
 
 .pass-icon {
@@ -31,4 +33,48 @@
 
 .inputSpace1 {
   padding-right: 40px;
+  background-color: transparent;
+}
+
+.inputSpace:focus,
+.inputSpace:active {
+  background-color: transparent !important;
+}
+
+.backGroundImage {
+  background-image: url("../../../../public//images/login-image.jpg");
+  height: 80vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+@media (max-width: 500px) {
+  .loginWidth {
+    width: 100%;
+  }
+}
+
+@media (min-width: 501px) {
+  .loginWidth {
+    width: 70%;
+  }
+}
+
+@media (min-width: 768px) {
+  .loginWidth {
+    width: 80%;
+  }
+}
+
+@media (min-width: 1500px) {
+  .loginWidth {
+    width: 70%;
+  }
+}
+
+@media (min-width: 1900px) {
+  .loginWidth {
+    width: 50%;
+  }
 }
