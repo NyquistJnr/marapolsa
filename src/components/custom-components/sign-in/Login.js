@@ -171,7 +171,7 @@ const Login = (props) => {
         </Form>
         <div>
           <p className="text-center py-3">
-            Don't have an account yet?{" "}
+            Don&apos;t have an account yet?{" "}
             <span onClick={handelChangeClick} style={{ color: "#E86C44" }}>
               Sign Up
             </span>
