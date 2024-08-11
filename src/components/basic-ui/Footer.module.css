@@ -28,6 +28,7 @@
   background-color: #e86c44; /* Maintain body background color on focus */
   border-color: white; /* Maintain white border on focus */
   color: white; /* Maintain white text color on focus */
+box-shadow:none;
 }
 
 .subscribeBtn {
