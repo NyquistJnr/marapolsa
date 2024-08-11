@@ -53,6 +53,8 @@ const ProfileEdit = () => {
       setName(data?.data?.username);
       setEmail(data?.data?.email_address);
       setDP(data?.data?.profile_picture);
+      setCountry(data?.data?.country);
+      setGender(data?.data?.gender);
     } catch (error) {
       console.error("Signup failed:", error);
     }
@@ -207,9 +209,8 @@ const ProfileEdit = () => {
                   onChange={(e) => setGender(e.target.value)}
                 >
                   <option>Select</option>
-                  <option value="m">Male</option>
-                  <option value="f">Female</option>
-                  <option value="o">Other</option>
+                  <option value="MALE">Male</option>
+                  <option value="FEMALE">Female</option>
                 </Form.Select>
               </div>
             </section>
