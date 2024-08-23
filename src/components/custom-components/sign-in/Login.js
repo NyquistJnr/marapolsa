@@ -96,7 +96,7 @@ const Login = () => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              minHeight: "80vh",
+              minHeight: "95vh",
             }}
           >
             <div className={classes.loginWidth}>
